@@ -1290,21 +1290,6 @@ body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
 </footer>
 
 <!-- ════════════════════════════════════
-     NO-DB WARNING BANNER
-════════════════════════════════════ -->
-<div id="noDbBanner" class="no-db-banner" style="display:none;">
-  <span class="nb-icon">⚠️</span>
-  <span class="nb-text">
-    <strong class="ar">تحذير: الموقع يعمل بدون قاعدة بيانات!</strong>
-    <strong class="it" style="display:none">Attenzione: sito senza database!</strong>
-    <br>
-    <span class="ar">المنشورات مرئية في هذا المتصفح فقط. أضف مفاتيح Supabase في index.html لتظهر للجميع.</span>
-    <span class="it" style="display:none">I post sono visibili solo in questo browser. Aggiungi le chiavi Supabase in index.html per renderli visibili a tutti.</span>
-  </span>
-  <button class="nb-close" onclick="this.parentElement.style.display='none'">✕</button>
-</div>
-
-<!-- ════════════════════════════════════
      DETAIL MODAL (click to zoom post/event)
 ════════════════════════════════════ -->
 <div class="detail-overlay" id="detailOverlay" onclick="if(event.target===this)closeDetail()">
@@ -1332,12 +1317,6 @@ body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
     <div class="admin-top">
       <h2>⚙ <span class="ar">لوحة الإدارة</span><span class="it" style="display:none">Pannello Admin</span></h2>
       <button class="btn-close-admin" onclick="closeAdmin()">✕ <span class="ar">إغلاق</span><span class="it" style="display:none">Chiudi</span></button>
-    </div>
-
-    <!-- DB STATUS -->
-    <div class="db-status" id="dbStatus">
-      <div class="db-status-dot"></div>
-      <span id="dbStatusText">...</span>
     </div>
 
     <!-- LOGIN -->
@@ -1555,23 +1534,9 @@ function goto(id){
   if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-/* ═══ DB STATUS ═══ */
-function updateDbStatus(){
-  var el = document.getElementById('dbStatus');
-  var txt = document.getElementById('dbStatusText');
-  if(window.SUPABASE_READY){
-    el.className = 'db-status ok';
-    txt.textContent = isRTL ? '✅ Supabase متصل — البيانات محفوظة للجميع' : '✅ Supabase connesso — dati condivisi';
-  } else {
-    el.className = 'db-status warn';
-    txt.textContent = isRTL ? '⚠ وضع محلي فقط — اتبع SETUP_GUIDE.md لربط Supabase' : '⚠ Modalità locale — segui SETUP_GUIDE.md per Supabase';
-  }
-}
-
 /* ═══ ADMIN AUTH ═══ */
 function openAdmin(){
   document.getElementById('adminPanel').classList.add('open');
-  updateDbStatus();
   var sub = document.getElementById('loginSubtext');
   if(!adminPassword){
     sub.innerHTML = '<span class="ar">أول مرة — اختر كلمة مرور (6 أحرف على الأقل)</span><span class="it" style="display:none">Prima volta — scegli una password (min 6 caratteri)</span>';
@@ -1743,12 +1708,6 @@ async function initData(){
     var [dbPosts, dbEvents] = await Promise.all([dbLoad('posts'), dbLoad('events')]);
     if(dbPosts)  { posts  = dbPosts;  localStorage.setItem('gxb_posts',  JSON.stringify(posts));  }
     if(dbEvents) { events = dbEvents; localStorage.setItem('gxb_events', JSON.stringify(events)); }
-    // hide banner — supabase is connected
-    document.getElementById('noDbBanner').style.display = 'none';
-  } else {
-    // show warning banner — data is local only
-    document.getElementById('noDbBanner').style.display = 'flex';
-    applyLang();
   }
   renderPosts(); renderEvents();
   showLoading(false);
