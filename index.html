@@ -25,14 +25,8 @@
      after following SETUP_GUIDE.md
 ════════════════════════════════════ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const SUPABASE_URL = 'https://apahqiiaqbqyjhygzvpu.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwYWhxaWlhcWJxeWpoeWd6dnB1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0MDkxNjcsImV4cCI6MjA5Mjk4NTE2N30.OsaJzuBtFQZi0pCCIx8WzfdK7i7gSg3xDAUfLsd5H1I';
+<script> const SUPABASE_URL = 'https://apahqiiaqbqyjhygzvpu.supabase.co'; const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwYWhxaWlhcWJxeWpoeWd6dnB1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0MDkxNjcsImV4cCI6MjA5Mjk4NTE2N30.OsaJzuBtFQZi0pCCIx8WzfdK7i7gSg3xDAUfLsd5H1I'; const _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); window._sb = _sb; window.SUPABASE_READY = (SUPABASE_URL !== 'YOUR_SUPABASE_URL'); </script>
 
-  const _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  window._sb = _sb;
-  window.SUPABASE_READY = (SUPABASE_URL !== 'YOUR_SUPABASE_URL');
-</script>
 <style>
 /* ═══════════ LOGO COLOR PALETTE ═══════════
    Forest Green  : #1a6b1e  (dominant)
@@ -1412,12 +1406,7 @@ body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
           </button>
         </div>
         <div class="admin-section" style="border-top:1px solid rgba(255,255,255,.07);padding-top:18px;">
-          <h3><span class="ar">حالة قاعدة البيانات</span><span class="it" style="display:none">Stato Database</span></h3>
-          <p style="font-size:.77rem;opacity:.4;line-height:1.75;">
-            <span class="ar">البيانات تُحفظ في Supabase عند الإعداد الصحيح، وإلا تُستخدم الذاكرة المحلية. راجع ملف SETUP_GUIDE.md.</span>
-            <span class="it" style="display:none">I dati vengono salvati su Supabase se configurato, altrimenti si usa il localStorage. Vedi SETUP_GUIDE.md.</span>
-          </p>
-          <button class="btn-action btn-ghost" onclick="logout()" style="margin-top:10px;">
+          <button class="btn-action btn-ghost" onclick="logout()" style="margin-top:4px;">
             <span class="ar">↩ تسجيل الخروج</span><span class="it" style="display:none">↩ Esci</span>
           </button>
         </div>
