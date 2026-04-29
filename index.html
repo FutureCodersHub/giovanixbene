@@ -19,9 +19,13 @@
 <meta property="og:type" content="website">
 
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@400;700;900&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+
+<!-- ═══════════════════════════════════
+     SUPABASE — paste your URL & key below
+     after following SETUP_GUIDE.md
+════════════════════════════════════ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  // ✅ REPLACE these two values with yours from Supabase dashboard
   const SUPABASE_URL = 'https://apahqiiaqbqyjhygzvpu.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwYWhxaWlhcWJxeWpoeWd6dnB1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0MDkxNjcsImV4cCI6MjA5Mjk4NTE2N30.OsaJzuBtFQZi0pCCIx8WzfdK7i7gSg3xDAUfLsd5H1I';
 
@@ -30,7 +34,15 @@
   window.SUPABASE_READY = (SUPABASE_URL !== 'YOUR_SUPABASE_URL');
 </script>
 <style>
-
+/* ═══════════ LOGO COLOR PALETTE ═══════════
+   Forest Green  : #1a6b1e  (dominant)
+   Bright Green  : #28a745
+   Crimson Red   : #c0120c
+   Pure White    : #ffffff
+   Jet Black     : #0a0a0a
+   Warm Cream    : #f5f0e8
+   Gold Accent   : #d4a017
+   ══════════════════════════════════════ */
 :root {
   --green:       #1a6b1e;
   --green-mid:   #228b22;
@@ -61,6 +73,7 @@ body.ltr .it{display:block!important;}
 body.rtl .it{display:none!important;}
 body.rtl .ar{display:block!important;}
 
+/* ── NOISE TEXTURE OVERLAY ── */
 body::before{
   content:'';
   position:fixed;
@@ -71,7 +84,9 @@ body::before{
   opacity:.4;
 }
 
-
+/* ════════════════════════════════════
+   HEADER
+════════════════════════════════════ */
 header{
   background:linear-gradient(135deg, var(--black) 0%, var(--black-soft) 40%, #142b15 100%);
   color:white;
@@ -116,7 +131,9 @@ nav a:hover{color:white;background:rgba(26,107,30,.3);border-color:rgba(26,107,3
 }
 .admin-btn:hover{background:rgba(26,107,30,.3);border-color:var(--green);color:white;}
 
-
+/* ════════════════════════════════════
+   HERO
+════════════════════════════════════ */
 .hero{
   background:linear-gradient(160deg, var(--black) 0%, #0d1f0e 45%, #162d17 100%);
   color:white;
@@ -130,6 +147,7 @@ nav a:hover{color:white;background:rgba(26,107,30,.3);border-color:rgba(26,107,3
     radial-gradient(ellipse 70% 60% at 50% 100%, rgba(26,107,30,.35) 0%, transparent 70%),
     radial-gradient(ellipse 40% 40% at 20% 10%, rgba(192,18,12,.1) 0%, transparent 60%);
 }
+/* Decorative diagonal stripes */
 .hero::after{
   content:'';position:absolute;inset:0;
   background:repeating-linear-gradient(
@@ -201,7 +219,9 @@ body.ltr .hero h1{font-family:'Playfair Display',serif;}
 }
 .hero-cta-alt:hover{background:rgba(192,18,12,.2);border-color:var(--red);color:white;}
 
-
+/* ════════════════════════════════════
+   INFO STRIP
+════════════════════════════════════ */
 .info-strip{
   background:linear-gradient(135deg, var(--black-soft), var(--black-card));
   color:white;padding:26px 24px;
@@ -223,7 +243,9 @@ body.ltr .hero h1{font-family:'Playfair Display',serif;}
 .info-text a{color:var(--gold-light);text-decoration:none;transition:color .2s;}
 .info-text a:hover{color:white;}
 
-
+/* ════════════════════════════════════
+   SECTIONS
+════════════════════════════════════ */
 .section{padding:68px 30px;max-width:1200px;margin:0 auto;}
 .section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:14px;}
 .section-title-wrap{}
@@ -239,7 +261,9 @@ body.ltr .section-title{font-family:'Playfair Display',serif;}
 .section-line{width:44px;height:3px;margin-top:9px;background:linear-gradient(90deg,var(--green),var(--red));border-radius:3px;}
 .section-sub{color:var(--gray);margin-top:6px;font-size:.88rem;}
 
-
+/* ════════════════════════════════════
+   CARDS
+════════════════════════════════════ */
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:26px;}
 .card{
   background:white;
@@ -304,7 +328,9 @@ body.ltr .section-title{font-family:'Playfair Display',serif;}
 }
 .btn-delete:hover{background:rgba(192,18,12,.07);border-color:var(--red);}
 
-
+/* ════════════════════════════════════
+   ABOUT
+════════════════════════════════════ */
 .about-wrap{
   background:linear-gradient(135deg,var(--black),var(--black-card));
   border-radius:16px;
@@ -355,12 +381,15 @@ body.ltr .about-text-side h2{font-family:'Playfair Display',serif;}
 .about-stat .num{font-size:1.6rem;font-weight:900;color:var(--green-light);display:block;}
 .about-stat .lbl{font-size:.68rem;opacity:.55;text-transform:uppercase;letter-spacing:.8px;}
 
-
+/* ════════════════════════════════════
+   MAP
+════════════════════════════════════ */
 .map-section{background:var(--cream-dark);padding:50px 30px;}
 .map-inner{max-width:1200px;margin:0 auto;}
 
 .map-wrap{border-radius:12px;overflow:hidden;box-shadow:var(--shadow-g);border:2px solid var(--green);}
 .map-wrap iframe{display:block;width:100%;height:320px;border:none;}
+/* photo upload */
 .photo-upload-area{
   border:2px dashed rgba(255,255,255,.18);
   border-radius:10px;padding:16px;
@@ -395,6 +424,7 @@ body.ltr .about-text-side h2{font-family:'Playfair Display',serif;}
   cursor:pointer;display:flex;align-items:center;justify-content:center;
   line-height:1;
 }
+/* card image gallery */
 .card-gallery{width:100%;height:195px;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--black-card),var(--green));}
 .card-gallery img{width:100%;height:100%;object-fit:cover;display:block;}
 .card-gallery-count{
@@ -1162,29 +1192,6 @@ body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
       </a>
     </div>
 
-    <!-- SADAQA JARIYA DEDICATION -->
-    <div class="sadaqa-plaque">
-      <div class="sadaqa-ornament">☽</div>
-      <div class="sadaqa-content">
-        <p class="sadaqa-label">صـدقـة جـاريـة</p>
-        <p class="sadaqa-text">تلاوة القرآن الكريم هذه صدقةٌ جاريةٌ</p>
-        <div class="sadaqa-divider-line"></div>
-        <p class="sadaqa-souls">
-          <span class="sadaqa-on">على روح</span>
-          <span class="sadaqa-name">هنية إبراهيم</span>
-        </p>
-        <p class="sadaqa-souls" style="margin-bottom:6px;">
-          <span class="sadaqa-on" style="font-size:.95rem;">وعلى روح جميع أموات المسلمين</span>
-        </p>
-        <div class="sadaqa-divider-line"></div>
-        <p class="sadaqa-souls" style="margin-bottom:6px;">
-          <span class="sadaqa-on" style="font-size:.85rem;">مُهداةٌ من حفيدها</span>
-          <span class="sadaqa-name" style="font-size:1.2rem;">علي مجدي</span>
-        </p>
-        <p class="sadaqa-dua">رحمهم الله وأسكنهم فسيح جنّاته</p>
-      </div>
-      <div class="sadaqa-ornament">☽</div>
-    </div>
   </div>
 </div>
 
@@ -1213,8 +1220,8 @@ body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
       </div>
       <div class="teaching-card">
         <span class="tc-icon">🔤</span>
-        <h3 class="ar">اللغة العربية</h3>
-        <h3 class="it" style="display:none">Lingua Araba</h3>
+        <h3 class="ar">تعلّم اللغة العربية</h3>
+        <h3 class="it" style="display:none">Impara la Lingua Araba</h3>
         <p class="ar">تعلّم اللغة العربية من الصفر حتى الاحتراف — قراءةً وكتابةً ومحادثةً — في بيئة ودية ومحفّزة.</p>
         <p class="it" style="display:none">Impara l'arabo da zero fino all'avanzato — lettura, scrittura e conversazione — in un ambiente amichevole e stimolante.</p>
       </div>
@@ -1415,6 +1422,7 @@ body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
         </div>
       </div>
 
+      <!-- TAB SETTINGS -->
       <div class="tab-panel" id="tabSettings">
         <div class="admin-section">
           <h3><span class="ar">تغيير كلمة المرور</span><span class="it" style="display:none">Cambia Password</span></h3>
@@ -1477,7 +1485,9 @@ body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
   </div>
 </div>
 
-
+<!-- ════════════════════════════════════
+     CONFIRM DELETE DIALOG
+════════════════════════════════════ -->
 <div class="confirm-overlay" id="confirmOverlay">
   <div class="confirm-box">
     <span class="ci">🗑️</span>
@@ -1492,14 +1502,18 @@ body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
   </div>
 </div>
 
-
+<!-- ════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════ -->
 <script>
+/* ═══ STATE ═══ */
 var isRTL = true;
 var isLoggedIn = false;
 var adminPassword = localStorage.getItem('gxb_pw') || null;
 var posts  = JSON.parse(localStorage.getItem('gxb_posts')  || '[]');
 var events = JSON.parse(localStorage.getItem('gxb_events') || '[]');
 
+/* ═══ UI HELPERS ═══ */
 function showLoading(on){
   document.getElementById('loadingBar').classList.toggle('active', on);
 }
@@ -1522,6 +1536,7 @@ function confirmDialog(msg, cb){
   };
 }
 
+/* ═══ LANGUAGE ═══ */
 function toggleLang(){
   isRTL = !isRTL;
   var b = document.getElementById('body');
@@ -1540,6 +1555,7 @@ function goto(id){
   if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
+/* ═══ DB STATUS ═══ */
 function updateDbStatus(){
   var el = document.getElementById('dbStatus');
   var txt = document.getElementById('dbStatusText');
@@ -1552,6 +1568,7 @@ function updateDbStatus(){
   }
 }
 
+/* ═══ ADMIN AUTH ═══ */
 function openAdmin(){
   document.getElementById('adminPanel').classList.add('open');
   updateDbStatus();
@@ -1617,6 +1634,7 @@ function changePw(){
   showToast(isRTL ? '✅ تم تغيير كلمة المرور' : '✅ Password aggiornata');
 }
 
+/* ═══ TABS ═══ */
 function switchTab(tabId, btn){
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1624,6 +1642,7 @@ function switchTab(tabId, btn){
   btn.classList.add('active');
 }
 
+/* ═══ PHOTO UPLOAD ═══ */
 function handlePhotoUpload(input, hiddenId, thumbsId){
   var files = Array.from(input.files);
   if(!files.length) return;
@@ -1667,18 +1686,28 @@ function removePhoto(hiddenId, thumbsId, idx){
   renderThumbs(arr, hiddenId, thumbsId);
 }
 
+/* ═══ SUPABASE HELPERS ═══ */
 async function dbSave(table, data){
   if(!window.SUPABASE_READY) return null;
   try {
-    const { data: result, error } = await _sb.from(table).insert([data]).select().single();
+    // stringify photos array for jsonb
+    var payload = Object.assign({}, data);
+    if(Array.isArray(payload.photos)) payload.photos = JSON.stringify(payload.photos);
+    const { data: result, error } = await _sb.from(table).insert([payload]).select().single();
     if(error) throw error;
+    // parse photos back
+    if(result && result.photos && typeof result.photos === 'string'){
+      try{ result.photos = JSON.parse(result.photos); }catch(e){}
+    }
     return result;
   } catch(e){ console.error('DB save error:', e); return null; }
 }
 async function dbUpdate(table, id, data){
   if(!window.SUPABASE_READY) return null;
   try {
-    const { error } = await _sb.from(table).update(data).eq('id', id);
+    var payload = Object.assign({}, data);
+    if(Array.isArray(payload.photos)) payload.photos = JSON.stringify(payload.photos);
+    const { error } = await _sb.from(table).update(payload).eq('id', id);
     if(error) throw error;
     return true;
   } catch(e){ console.error('DB update error:', e); return null; }
@@ -1696,10 +1725,18 @@ async function dbLoad(table){
   try {
     const { data, error } = await _sb.from(table).select('*').order('created_at', {ascending:false});
     if(error) throw error;
+    // parse photos strings back to arrays
+    if(data) data.forEach(function(row){
+      if(row.photos && typeof row.photos === 'string'){
+        try{ row.photos = JSON.parse(row.photos); }catch(e){ row.photos = []; }
+      }
+      if(!Array.isArray(row.photos)) row.photos = row.img ? [row.img] : [];
+    });
     return data;
   } catch(e){ console.error('DB load error:', e); return null; }
 }
 
+/* ═══ INIT — load from Supabase if available ═══ */
 async function initData(){
   showLoading(true);
   if(window.SUPABASE_READY){
@@ -1717,6 +1754,7 @@ async function initData(){
   showLoading(false);
 }
 
+/* ═══ ADD POST ═══ */
 async function addPost(){
   var tAr = document.getElementById('nTitleAr').value.trim();
   var tIt = document.getElementById('nTitleIt').value.trim();
@@ -1754,6 +1792,7 @@ async function addPost(){
   showToast(isRTL ? '✅ تم نشر الخبر بنجاح!' : '✅ Notizia pubblicata!');
 }
 
+/* ═══ DELETE POST ═══ */
 function delPost(id){
   confirmDialog('', async function(){
     showLoading(true);
@@ -1766,6 +1805,7 @@ function delPost(id){
   });
 }
 
+/* ═══ OPEN EDIT POST ═══ */
 function openEditPost(id){
   var p = posts.find(x => String(x.id) === String(id)); if(!p) return;
   document.getElementById('editId').value    = id;
@@ -1783,6 +1823,7 @@ function openEditPost(id){
   applyLang();
 }
 
+/* ═══ ADD EVENT ═══ */
 async function addEvent(){
   var tAr = document.getElementById('eTitleAr').value.trim();
   var tIt = document.getElementById('eTitleIt').value.trim();
@@ -1824,6 +1865,7 @@ async function addEvent(){
   showToast(isRTL ? '✅ تمت إضافة الفعالية!' : '✅ Evento aggiunto!');
 }
 
+/* ═══ DELETE EVENT ═══ */
 function delEvent(id){
   confirmDialog('', async function(){
     showLoading(true);
@@ -1836,6 +1878,7 @@ function delEvent(id){
   });
 }
 
+/* ═══ OPEN EDIT EVENT ═══ */
 function openEditEvent(id){
   var ev = events.find(x => String(x.id) === String(id)); if(!ev) return;
   document.getElementById('editId').value    = id;
@@ -1854,6 +1897,7 @@ function openEditEvent(id){
   applyLang();
 }
 
+/* ═══ SAVE EDIT ═══ */
 async function saveEdit(){
   var id   = document.getElementById('editId').value;
   var type = document.getElementById('editType').value;
@@ -1870,20 +1914,46 @@ async function saveEdit(){
 
   if(type === 'post'){
     var updates = { title_ar:tAr||tIt, title_it:tIt||tAr, text_ar:xAr||xIt, text_it:xIt||xAr, photos:photos, img:photos[0]||'' };
-    if(window.SUPABASE_READY) await dbUpdate('posts', id, updates);
-    var idx = posts.findIndex(p => String(p.id) === String(id));
-    if(idx >= 0) posts[idx] = Object.assign({}, posts[idx], updates);
-    localStorage.setItem('gxb_posts', JSON.stringify(posts));
+    if(window.SUPABASE_READY){
+      var ok = await dbUpdate('posts', id, updates);
+      if(ok){
+        // reload fresh from DB
+        var fresh = await dbLoad('posts');
+        if(fresh){ posts = fresh; localStorage.setItem('gxb_posts', JSON.stringify(posts)); }
+      } else {
+        // fallback: update locally
+        var idx = posts.findIndex(p => String(p.id) === String(id));
+        if(idx >= 0) posts[idx] = Object.assign({}, posts[idx], updates);
+        localStorage.setItem('gxb_posts', JSON.stringify(posts));
+        showToast(isRTL ? '⚠ خطأ في التحديث، تم الحفظ محلياً' : '⚠ Errore update, salvato localmente', 'error');
+      }
+    } else {
+      var idx = posts.findIndex(p => String(p.id) === String(id));
+      if(idx >= 0) posts[idx] = Object.assign({}, posts[idx], updates);
+      localStorage.setItem('gxb_posts', JSON.stringify(posts));
+    }
     renderPosts();
   } else {
     var date = document.getElementById('editDate').value;
     var dateStr='';
     if(date){ var d=new Date(date+'T12:00:00'); dateStr=d.toLocaleDateString('ar-EG',{year:'numeric',month:'long',day:'numeric'}); }
     var updates = { title_ar:tAr||tIt, title_it:tIt||tAr, text_ar:xAr||xIt, text_it:xIt||xAr, photos:photos, img:photos[0]||'', event_date:date||null, date_str:dateStr };
-    if(window.SUPABASE_READY) await dbUpdate('events', id, updates);
-    var idx = events.findIndex(e => String(e.id) === String(id));
-    if(idx >= 0) events[idx] = Object.assign({}, events[idx], updates);
-    localStorage.setItem('gxb_events', JSON.stringify(events));
+    if(window.SUPABASE_READY){
+      var ok = await dbUpdate('events', id, updates);
+      if(ok){
+        var fresh = await dbLoad('events');
+        if(fresh){ events = fresh; localStorage.setItem('gxb_events', JSON.stringify(events)); }
+      } else {
+        var idx = events.findIndex(e => String(e.id) === String(id));
+        if(idx >= 0) events[idx] = Object.assign({}, events[idx], updates);
+        localStorage.setItem('gxb_events', JSON.stringify(events));
+        showToast(isRTL ? '⚠ خطأ في التحديث، تم الحفظ محلياً' : '⚠ Errore update, salvato localmente', 'error');
+      }
+    } else {
+      var idx = events.findIndex(e => String(e.id) === String(id));
+      if(idx >= 0) events[idx] = Object.assign({}, events[idx], updates);
+      localStorage.setItem('gxb_events', JSON.stringify(events));
+    }
     renderEvents();
   }
 
@@ -1895,11 +1965,13 @@ function closeEditModal(){
   document.getElementById('editModal').classList.remove('open');
 }
 
+/* ═══ ESCAPE HTML ═══ */
 function esc(s){
   if(!s) return '';
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
+/* ═══ GALLERY HTML for card ═══ */
 function galleryHtml(photos, fallbackEmoji, uid){
   var arr = (photos && photos.length) ? photos : [];
   if(!arr.length) return '<div class="card-img">'+fallbackEmoji+'</div>';
@@ -1925,6 +1997,7 @@ function galNav(uid, arr, dir){
   if(num) num.textContent = galIdx[uid]+1;
 }
 
+/* ═══ ADMIN BUTTONS ═══ */
 function adminBtns(id, type){
   if(!isLoggedIn) return '';
   var editFn  = type==='post' ? 'openEditPost'  : 'openEditEvent';
@@ -1937,6 +2010,7 @@ function adminBtns(id, type){
     +'</div>';
 }
 
+/* ═══ RENDER POSTS ═══ */
 function renderPosts(){
   var l = document.getElementById('newsList');
   if(!posts.length){
@@ -1964,6 +2038,7 @@ function renderPosts(){
   applyLang();
 }
 
+/* ═══ RENDER EVENTS ═══ */
 function renderEvents(){
   var l = document.getElementById('eventsList');
   if(!events.length){
@@ -1991,7 +2066,9 @@ function renderEvents(){
   applyLang();
 }
 
-
+/* ═══════════════════════════════════
+   DETAIL MODAL
+═══════════════════════════════════ */
 var _detailSliderIdx = 0;
 var _detailPhotos = [];
 
@@ -2086,6 +2163,7 @@ function closeDetail(){
   document.body.style.overflow = '';
 }
 
+// keyboard support
 document.addEventListener('keydown', function(e){
   if(!document.getElementById('detailOverlay').classList.contains('open')) return;
   if(e.key === 'Escape') closeDetail();
@@ -2093,6 +2171,7 @@ document.addEventListener('keydown', function(e){
   if(e.key === 'ArrowRight') detailNav(isRTL ? -1 : 1);
 });
 
+/* ═══ BOOT ═══ */
 initData();
 </script>
 </body>
