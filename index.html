@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giovani X il Bene | مؤسسة شباب X الخير</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@400;700;900&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+
+<!-- ═══════════════════════════════════
+     SUPABASE — paste your URL & key below
+     after following SETUP_GUIDE.md
+════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // ✅ REPLACE these two values with yours from Supabase dashboard
+  const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+  const _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  window._sb = _sb;
+  window.SUPABASE_READY = (SUPABASE_URL !== 'YOUR_SUPABASE_URL');
+</script>
+
+<style>
+/* ═══════════ LOGO COLOR PALETTE ═══════════
+   Forest Green  : #1a6b1e  (dominant)
+   Bright Green  : #28a745
+   Crimson Red   : #c0120c
+   Pure White    : #ffffff
+   Jet Black     : #0a0a0a
+   Warm Cream    : #f5f0e8
+   Gold Accent   : #d4a017
+   ══════════════════════════════════════ */
+:root {
+  --green:       #1a6b1e;
+  --green-mid:   #228b22;
+  --green-light: #34a853;
+  --red:         #c0120c;
+  --red-light:   #e53935;
+  --black:       #0a0a0a;
+  --black-soft:  #121a13;
+  --black-card:  #0f1a10;
+  --white:       #ffffff;
+  --cream:       #f5f0e8;
+  --cream-dark:  #ede7da;
+  --gold:        #d4a017;
+  --gold-light:  #f0bc2e;
+  --text:        #1a2e1a;
+  --gray:        #5a6e5a;
+  --border:      rgba(26,107,30,0.15);
+  --shadow-g:    0 8px 40px rgba(26,107,30,0.18);
+  --shadow-r:    0 8px 30px rgba(192,18,12,0.15);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden;}
+body.ltr{direction:ltr;font-family:'Playfair Display',serif;}
+body.ltr .ar{display:none!important;}
+body.ltr .it{display:block!important;}
+body.rtl .it{display:none!important;}
+body.rtl .ar{display:block!important;}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:0;
+  opacity:.4;
+}
+
+/* ════════════════════════════════════
+   HEADER
+════════════════════════════════════ */
+header{
+  background:linear-gradient(135deg, var(--black) 0%, var(--black-soft) 40%, #142b15 100%);
+  color:white;
+  position:sticky;top:0;z-index:100;
+  border-bottom:2px solid var(--green);
+  box-shadow:0 4px 30px rgba(0,0,0,.6), 0 1px 0 rgba(26,107,30,.4);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:68px;max-width:1280px;margin:0 auto;}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo img{height:48px;width:48px;object-fit:contain;filter:drop-shadow(0 2px 10px rgba(26,107,30,.8));}
+.logo-text .main{font-size:.98rem;font-weight:700;color:white;letter-spacing:.3px;}
+.logo-text .sub{font-size:.62rem;opacity:.55;color:var(--green-light);}
+nav{display:flex;align-items:center;gap:2px;flex-wrap:wrap;}
+nav a{
+  color:rgba(255,255,255,.78);
+  text-decoration:none;
+  padding:6px 12px;
+  border-radius:6px;
+  font-size:.8rem;
+  cursor:pointer;
+  transition:all .2s;
+  border:1px solid transparent;
+}
+nav a:hover{color:white;background:rgba(26,107,30,.3);border-color:rgba(26,107,30,.5);}
+.lang-toggle{
+  background:linear-gradient(135deg,var(--red),var(--red-light));
+  color:white;border:none;
+  padding:6px 16px;border-radius:6px;
+  font-weight:700;cursor:pointer;font-size:.78rem;
+  margin-inline-start:6px;
+  transition:all .2s;
+  box-shadow:0 2px 8px rgba(192,18,12,.4);
+}
+.lang-toggle:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(192,18,12,.5);}
+.admin-btn{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.8);
+  padding:6px 13px;border-radius:6px;
+  cursor:pointer;font-size:.76rem;
+  transition:all .2s;font-family:inherit;
+}
+.admin-btn:hover{background:rgba(26,107,30,.3);border-color:var(--green);color:white;}
+
+/* ════════════════════════════════════
+   HERO
+════════════════════════════════════ */
+.hero{
+  background:linear-gradient(160deg, var(--black) 0%, #0d1f0e 45%, #162d17 100%);
+  color:white;
+  text-align:center;
+  padding:80px 20px 70px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(26,107,30,.35) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 10%, rgba(192,18,12,.1) 0%, transparent 60%);
+}
+/* Decorative diagonal stripes */
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    -45deg,
+    transparent, transparent 60px,
+    rgba(26,107,30,.03) 60px, rgba(26,107,30,.03) 61px
+  );
+}
+.hero-logo{
+  width:130px;height:130px;
+  object-fit:contain;
+  margin:0 auto 22px;
+  filter:drop-shadow(0 6px 24px rgba(26,107,30,.7));
+  animation:float 5s ease-in-out infinite;
+  display:block;position:relative;z-index:1;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(26,107,30,.25);
+  border:1px solid rgba(26,107,30,.5);
+  color:var(--green-light);
+  padding:5px 16px;border-radius:30px;
+  font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:18px;position:relative;z-index:1;
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green-light);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero h1{
+  font-size:clamp(2rem,5vw,3.2rem);
+  font-weight:900;margin-bottom:10px;
+  font-family:'Amiri',serif;line-height:1.3;
+  position:relative;z-index:1;
+  text-shadow:0 2px 20px rgba(0,0,0,.5);
+}
+body.ltr .hero h1{font-family:'Playfair Display',serif;}
+.hero h1 em{
+  font-style:normal;
+  color:var(--red-light);
+  text-shadow:0 2px 20px rgba(192,18,12,.5);
+}
+.hero p{
+  font-size:1rem;opacity:.8;
+  max-width:560px;margin:14px auto 32px;
+  line-height:1.85;position:relative;z-index:1;
+}
+.hero-cta{
+  display:inline-block;
+  background:linear-gradient(135deg, var(--green), var(--green-mid));
+  color:white;
+  padding:13px 34px;border-radius:8px;
+  font-weight:700;text-decoration:none;
+  font-size:.92rem;cursor:pointer;
+  transition:all .25s;position:relative;z-index:1;
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 4px 20px rgba(26,107,30,.5);
+}
+.hero-cta:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(26,107,30,.6);}
+.hero-cta-alt{
+  display:inline-block;
+  background:transparent;
+  border:1.5px solid rgba(192,18,12,.6);
+  color:rgba(255,255,255,.8);
+  padding:12px 28px;border-radius:8px;
+  font-weight:600;text-decoration:none;
+  font-size:.88rem;cursor:pointer;
+  transition:all .25s;position:relative;z-index:1;
+  margin-inline-start:10px;
+}
+.hero-cta-alt:hover{background:rgba(192,18,12,.2);border-color:var(--red);color:white;}
+
+/* ════════════════════════════════════
+   INFO STRIP
+════════════════════════════════════ */
+.info-strip{
+  background:linear-gradient(135deg, var(--black-soft), var(--black-card));
+  color:white;padding:26px 24px;
+  border-top:2px solid var(--red);
+  border-bottom:2px solid var(--green);
+}
+.info-strip-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:28px;justify-content:center;}
+.info-item{display:flex;align-items:center;gap:12px;}
+.info-icon{
+  width:44px;height:44px;
+  background:rgba(26,107,30,.2);
+  border:1.5px solid var(--green);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.05rem;flex-shrink:0;
+}
+.info-text .label{font-size:.63rem;opacity:.45;text-transform:uppercase;letter-spacing:.8px;color:var(--green-light);}
+.info-text .value{font-size:.85rem;font-weight:600;}
+.info-text a{color:var(--gold-light);text-decoration:none;transition:color .2s;}
+.info-text a:hover{color:white;}
+
+/* ════════════════════════════════════
+   SECTIONS
+════════════════════════════════════ */
+.section{padding:68px 30px;max-width:1200px;margin:0 auto;}
+.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:14px;}
+.section-title-wrap{}
+.section-pretitle{font-size:.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--red);font-weight:700;margin-bottom:5px;}
+.section-title{
+  font-family:'Amiri',serif;
+  font-size:2rem;color:var(--black);
+  font-weight:700;
+  line-height:1.2;
+}
+body.ltr .section-title{font-family:'Playfair Display',serif;}
+.section-title span{color:var(--green);}
+.section-line{width:44px;height:3px;margin-top:9px;background:linear-gradient(90deg,var(--green),var(--red));border-radius:3px;}
+.section-sub{color:var(--gray);margin-top:6px;font-size:.88rem;}
+
+/* ════════════════════════════════════
+   CARDS
+════════════════════════════════════ */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:26px;}
+.card{
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,0,0,.08);
+  transition:all .3s;
+  animation:fadeUp .5s both;
+  border:1px solid var(--border);
+  position:relative;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--green),var(--green-light));
+  opacity:0;transition:opacity .3s;
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(26,107,30,.16);}
+.card:hover::before{opacity:1;}
+.card-img{
+  width:100%;height:195px;
+  background:linear-gradient(135deg,var(--black-card),var(--green));
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;overflow:hidden;position:relative;
+}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.card-img-overlay{
+  position:absolute;bottom:0;left:0;right:0;height:60px;
+  background:linear-gradient(transparent,rgba(0,0,0,.5));
+}
+.card-body{padding:18px 20px 22px;}
+.card-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:.65rem;font-weight:700;
+  padding:3px 10px;border-radius:5px;
+  margin-bottom:9px;text-transform:uppercase;letter-spacing:.5px;
+}
+.card-tag.green{background:rgba(26,107,30,.1);color:var(--green);}
+.card-tag.red{background:rgba(192,18,12,.1);color:var(--red);}
+.card h3{font-size:1rem;margin-bottom:7px;color:var(--black);font-weight:700;line-height:1.4;}
+.card p{font-size:.85rem;color:var(--gray);line-height:1.65;}
+.card-date{
+  margin-top:13px;font-size:.73rem;
+  color:var(--green);font-weight:600;
+  display:flex;align-items:center;gap:5px;
+}
+.card-date::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--green);display:inline-block;}
+.card-admin-btns{display:flex;gap:7px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.btn-edit{
+  background:none;border:1.5px solid rgba(26,107,30,.35);
+  color:var(--green);padding:5px 14px;border-radius:6px;
+  font-size:.73rem;cursor:pointer;font-family:inherit;
+  transition:all .2s;display:flex;align-items:center;gap:4px;
+}
+.btn-edit:hover{background:rgba(26,107,30,.08);border-color:var(--green);}
+.btn-delete{
+  background:none;border:1.5px solid rgba(192,18,12,.3);
+  color:var(--red);padding:5px 14px;border-radius:6px;
+  font-size:.73rem;cursor:pointer;font-family:inherit;
+  transition:all .2s;display:flex;align-items:center;gap:4px;
+}
+.btn-delete:hover{background:rgba(192,18,12,.07);border-color:var(--red);}
+
+/* ════════════════════════════════════
+   ABOUT
+════════════════════════════════════ */
+.about-wrap{
+  background:linear-gradient(135deg,var(--black),var(--black-card));
+  border-radius:16px;
+  padding:54px 50px;
+  color:white;
+  display:grid;grid-template-columns:1fr 1.4fr;gap:54px;align-items:center;
+  border:1px solid rgba(26,107,30,.25);
+  box-shadow:var(--shadow-g);
+  position:relative;overflow:hidden;
+}
+.about-wrap::before{
+  content:'';position:absolute;
+  top:-80px;right:-80px;
+  width:280px;height:280px;
+  background:radial-gradient(circle,rgba(26,107,30,.2),transparent 70%);
+  pointer-events:none;
+}
+.about-wrap::after{
+  content:'';position:absolute;
+  bottom:-60px;left:-60px;
+  width:220px;height:220px;
+  background:radial-gradient(circle,rgba(192,18,12,.15),transparent 70%);
+  pointer-events:none;
+}
+@media(max-width:760px){.about-wrap{grid-template-columns:1fr;padding:30px 24px;gap:30px;}}
+.about-logo-side{display:flex;align-items:center;justify-content:center;position:relative;z-index:1;}
+.about-logo-side img{
+  width:100%;max-width:200px;
+  filter:drop-shadow(0 8px 30px rgba(26,107,30,.6));
+  animation:float 6s ease-in-out infinite;
+}
+.about-text-side{position:relative;z-index:1;}
+.about-text-side h2{
+  font-family:'Amiri',serif;font-size:2rem;
+  margin-bottom:18px;
+  background:linear-gradient(90deg,white,var(--green-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+body.ltr .about-text-side h2{font-family:'Playfair Display',serif;}
+.about-text-side p{line-height:1.9;color:rgba(255,255,255,.72);margin-bottom:14px;font-size:.92rem;}
+.about-stat-row{display:flex;gap:18px;margin-top:22px;flex-wrap:wrap;}
+.about-stat{
+  background:rgba(26,107,30,.2);
+  border:1px solid rgba(26,107,30,.4);
+  border-radius:10px;padding:14px 18px;
+  text-align:center;flex:1;min-width:80px;
+}
+.about-stat .num{font-size:1.6rem;font-weight:900;color:var(--green-light);display:block;}
+.about-stat .lbl{font-size:.68rem;opacity:.55;text-transform:uppercase;letter-spacing:.8px;}
+
+/* ════════════════════════════════════
+   MAP
+════════════════════════════════════ */
+.map-section{background:var(--cream-dark);padding:50px 30px;}
+.map-inner{max-width:1200px;margin:0 auto;}
+
+.map-wrap{border-radius:12px;overflow:hidden;box-shadow:var(--shadow-g);border:2px solid var(--green);}
+.map-wrap iframe{display:block;width:100%;height:320px;border:none;}
+/* photo upload */
+.photo-upload-area{
+  border:2px dashed rgba(255,255,255,.18);
+  border-radius:10px;padding:16px;
+  text-align:center;cursor:pointer;
+  transition:border-color .2s,background .2s;
+  margin-bottom:8px;
+}
+.photo-upload-area:hover{border-color:var(--green);background:rgba(26,107,30,.07);}
+.photo-upload-area input[type=file]{display:none;}
+.upload-btn-label{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.18);
+  color:rgba(255,255,255,.8);
+  padding:8px 16px;border-radius:7px;
+  cursor:pointer;font-size:.8rem;font-family:inherit;
+  transition:all .2s;margin-bottom:6px;
+}
+.upload-btn-label:hover{background:rgba(26,107,30,.25);border-color:var(--green);color:white;}
+.upload-hint{font-size:.7rem;opacity:.3;display:block;}
+.photo-thumbs{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
+.photo-thumb{
+  position:relative;width:72px;height:72px;border-radius:7px;overflow:hidden;
+  border:1.5px solid rgba(255,255,255,.15);flex-shrink:0;
+}
+.photo-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.photo-thumb-del{
+  position:absolute;top:2px;right:2px;
+  background:rgba(192,18,12,.85);color:white;
+  border:none;border-radius:4px;
+  width:18px;height:18px;font-size:.65rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  line-height:1;
+}
+/* card image gallery */
+.card-gallery{width:100%;height:195px;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--black-card),var(--green));}
+.card-gallery img{width:100%;height:100%;object-fit:cover;display:block;}
+.card-gallery-count{
+  position:absolute;bottom:8px;right:8px;
+  background:rgba(0,0,0,.65);color:white;
+  font-size:.68rem;padding:3px 8px;border-radius:5px;
+  display:flex;align-items:center;gap:4px;
+}
+.card-gallery-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(0,0,0,.5);color:white;border:none;
+  width:28px;height:28px;border-radius:50%;cursor:pointer;
+  font-size:.8rem;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.card-gallery-nav:hover{background:rgba(26,107,30,.7);}
+.card-gallery-prev{left:6px;}
+.card-gallery-next{right:6px;}
+
+/* ════════════════════════════════════
+   CONTACT
+════════════════════════════════════ */
+.contact-section{
+  background:linear-gradient(155deg, var(--black) 0%, #111e12 60%, #0d1a10 100%);
+  padding:70px 30px;
+  color:white;text-align:center;
+  position:relative;overflow:hidden;
+}
+.contact-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 50% at 50% 100%,rgba(26,107,30,.25),transparent);
+}
+.contact-inner{max-width:700px;margin:0 auto;position:relative;z-index:1;}
+.contact-logo{font-size:3.5rem;margin-bottom:16px;display:block;}
+.contact-section h2{font-family:'Amiri',serif;font-size:2.1rem;margin-bottom:12px;}
+body.ltr .contact-section h2{font-family:'Playfair Display',serif;}
+.contact-section p{opacity:.72;margin-bottom:32px;line-height:1.75;font-size:.95rem;}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;max-width:650px;margin:0 auto;}
+.contact-card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;padding:18px 14px;
+  text-decoration:none;color:white;
+  transition:all .25s;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.contact-card:hover{background:rgba(26,107,30,.2);border-color:var(--green);transform:translateY(-3px);}
+.contact-card .cc-icon{font-size:1.5rem;}
+.contact-card .cc-label{font-size:.65rem;text-transform:uppercase;letter-spacing:1px;opacity:.45;}
+.contact-card .cc-val{font-size:.82rem;font-weight:600;}
+
+/* ════════════════════════════════════
+   FOOTER
+════════════════════════════════════ */
+footer{
+  background:var(--black);
+  color:rgba(255,255,255,.35);
+  text-align:center;padding:22px;
+  font-size:.76rem;line-height:2;
+  border-top:2px solid rgba(26,107,30,.3);
+}
+footer strong{color:var(--green-light);}
+footer a{color:var(--gold-light);text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+
+.divider{border:none;border-top:1px solid rgba(26,107,30,.1);margin:0;}
+
+/* ════════════════════════════════════
+   EMPTY STATE
+════════════════════════════════════ */
+.empty-state{
+  text-align:center;padding:60px 20px;
+  color:var(--gray);grid-column:1/-1;
+}
+.empty-state .icon{font-size:3rem;margin-bottom:13px;opacity:.25;display:block;}
+.empty-state p{font-size:.88rem;}
+
+/* ════════════════════════════════════
+   LOADING / TOAST
+════════════════════════════════════ */
+.loading-bar{
+  position:fixed;top:0;left:0;right:0;
+  height:3px;background:linear-gradient(90deg,var(--green),var(--red));
+  z-index:9999;transform:scaleX(0);transform-origin:left;
+  transition:transform .4s;
+}
+.loading-bar.active{transform:scaleX(1);}
+.toast{
+  position:fixed;bottom:24px;
+  inset-inline-end:24px;
+  background:var(--black);
+  color:white;
+  padding:12px 20px;border-radius:10px;
+  font-size:.84rem;
+  border-inline-start:3px solid var(--green);
+  box-shadow:0 8px 30px rgba(0,0,0,.4);
+  z-index:9999;
+  transform:translateY(20px);opacity:0;
+  transition:all .3s;
+  pointer-events:none;
+  display:flex;align-items:center;gap:10px;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.error{border-color:var(--red);}
+.toast.success{border-color:var(--green);}
+
+/* ════════════════════════════════════
+   ADMIN PANEL
+════════════════════════════════════ */
+.admin-panel{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.75);z-index:2000;
+  backdrop-filter:blur(4px);
+}
+.admin-panel.open{display:flex;align-items:flex-start;justify-content:flex-end;}
+body.rtl .admin-panel.open{justify-content:flex-start;}
+.admin-sidebar{
+  background:var(--black-card);
+  width:460px;max-width:100vw;height:100vh;
+  overflow-y:auto;
+  padding:24px 22px;color:white;
+  border-inline-start:2px solid var(--green);
+  animation:slideIn .3s both;
+}
+body.rtl .admin-sidebar{border-inline-start:none;border-inline-end:2px solid var(--green);}
+@keyframes slideIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
+body.rtl @keyframes slideIn{from{transform:translateX(-100%)}to{transform:translateX(0)}}
+.admin-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.admin-top h2{font-size:1.05rem;color:var(--green-light);display:flex;align-items:center;gap:8px;}
+.btn-close-admin{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.6);padding:6px 13px;border-radius:7px;
+  cursor:pointer;font-size:.78rem;font-family:inherit;transition:all .2s;
+}
+.btn-close-admin:hover{background:rgba(192,18,12,.2);border-color:var(--red);color:white;}
+.admin-input,.admin-textarea{
+  width:100%;
+  background:rgba(255,255,255,.06);
+  border:1.5px solid rgba(255,255,255,.1);
+  border-radius:8px;padding:9px 12px;
+  font-size:.84rem;color:white;
+  font-family:inherit;margin-bottom:8px;
+  outline:none;transition:border .2s;
+}
+.admin-input:focus,.admin-textarea:focus{border-color:var(--green);}
+.admin-input::placeholder,.admin-textarea::placeholder{opacity:.28;font-size:.8rem;}
+.admin-textarea{min-height:80px;resize:vertical;}
+.img-preview{
+  width:100%;border-radius:8px;margin-bottom:8px;
+  max-height:130px;object-fit:cover;display:none;
+  border:1.5px solid rgba(255,255,255,.1);
+}
+.date-label{font-size:.71rem;opacity:.38;margin-bottom:4px;display:block;text-transform:uppercase;letter-spacing:.8px;}
+.btn-action{
+  width:100%;border:none;padding:11px;
+  border-radius:8px;font-weight:700;
+  font-size:.88rem;cursor:pointer;
+  margin-top:3px;transition:all .2s;
+  font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;
+}
+.btn-green{background:linear-gradient(135deg,var(--green),var(--green-mid));color:white;}
+.btn-green:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(26,107,30,.45);}
+.btn-red{background:linear-gradient(135deg,var(--red),var(--red-light));color:white;}
+.btn-red:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(192,18,12,.4);}
+.btn-ghost{
+  width:100%;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.55);
+  padding:9px;border-radius:8px;font-size:.82rem;
+  cursor:pointer;margin-top:6px;font-family:inherit;transition:all .2s;
+}
+.btn-ghost:hover{background:rgba(255,255,255,.12);color:white;}
+.admin-section{margin-bottom:22px;}
+.admin-section h3{
+  font-size:.68rem;text-transform:uppercase;letter-spacing:1.5px;
+  opacity:.35;margin-bottom:12px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  padding-bottom:6px;
+}
+.tab-btns{display:flex;gap:6px;margin-bottom:20px;}
+.tab-btn{
+  flex:1;padding:8px 4px;
+  background:rgba(255,255,255,.05);
+  border:1.5px solid rgba(255,255,255,.08);
+  color:rgba(255,255,255,.45);
+  border-radius:7px;cursor:pointer;
+  font-size:.75rem;font-family:inherit;transition:all .2s;
+}
+.tab-btn.active{
+  background:rgba(26,107,30,.2);
+  border-color:var(--green);
+  color:var(--green-light);
+  font-weight:700;
+}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* LOGIN */
+.admin-login-wrap{
+  display:flex;flex-direction:column;align-items:center;
+  padding:30px 0;text-align:center;
+}
+.admin-login-wrap .al-logo{font-size:3rem;margin-bottom:14px;opacity:.7;}
+.admin-login-wrap h3{color:var(--green-light);margin-bottom:5px;}
+.admin-login-wrap p{font-size:.78rem;opacity:.4;margin-bottom:22px;line-height:1.6;}
+#pwInput{text-align:center;letter-spacing:3px;font-size:1rem;}
+#loginError{color:var(--red-light);font-size:.78rem;margin-top:7px;display:none;}
+
+/* DB STATUS */
+.db-status{
+  display:flex;align-items:center;gap:7px;
+  padding:8px 12px;border-radius:7px;
+  font-size:.74rem;margin-bottom:18px;
+}
+.db-status.ok{background:rgba(26,107,30,.15);border:1px solid rgba(26,107,30,.3);color:var(--green-light);}
+.db-status.warn{background:rgba(192,18,12,.12);border:1px solid rgba(192,18,12,.3);color:#ff7070;}
+.db-status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.db-status.ok .db-status-dot{background:var(--green-light);animation:pulse 2s infinite;}
+.db-status.warn .db-status-dot{background:var(--red-light);}
+
+/* ════════════════════════════════════
+   EDIT MODAL
+════════════════════════════════════ */
+.edit-modal{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.82);z-index:3000;
+  align-items:center;justify-content:center;
+  padding:16px;backdrop-filter:blur(5px);
+}
+.edit-modal.open{display:flex;}
+.edit-box{
+  background:var(--black-card);
+  border-radius:14px;
+  padding:28px 26px;
+  width:100%;max-width:520px;
+  max-height:90vh;overflow-y:auto;
+  color:white;
+  border:1.5px solid rgba(26,107,30,.35);
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  animation:popIn .25s both;
+}
+@keyframes popIn{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+.edit-box-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.edit-box-header h3{color:var(--green-light);font-size:1rem;}
+.edit-box-header span{font-size:.72rem;opacity:.35;}
+
+/* ════════════════════════════════════
+   CONFIRM DIALOG
+════════════════════════════════════ */
+.confirm-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.85);z-index:4000;
+  align-items:center;justify-content:center;
+  padding:20px;backdrop-filter:blur(6px);
+}
+.confirm-overlay.open{display:flex;}
+.confirm-box{
+  background:var(--black-card);
+  border-radius:14px;padding:32px 28px;
+  max-width:380px;width:100%;
+  border:1.5px solid rgba(192,18,12,.4);
+  text-align:center;color:white;
+  animation:popIn .2s both;
+}
+.confirm-box .ci{font-size:2.5rem;margin-bottom:12px;display:block;}
+.confirm-box h3{font-size:1.1rem;margin-bottom:7px;}
+.confirm-box p{font-size:.83rem;opacity:.5;margin-bottom:24px;line-height:1.6;}
+.confirm-btns{display:flex;gap:10px;justify-content:center;}
+.confirm-btns button{
+  padding:10px 24px;border-radius:8px;font-weight:700;
+  cursor:pointer;font-family:inherit;font-size:.88rem;transition:all .2s;border:none;
+}
+#confirmYes{background:var(--red);color:white;}
+#confirmYes:hover{background:var(--red-light);}
+#confirmNo{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);}
+#confirmNo:hover{background:rgba(255,255,255,.17);}
+
+@media(max-width:600px){
+  .header-inner{padding:0 12px;}
+  .section{padding:44px 14px;}
+  nav a{display:none;}
+  .info-strip-inner{flex-direction:column;align-items:flex-start;}
+  .edit-box{padding:20px 16px;}
+  .about-stat-row{gap:10px;}
+}
+</style>
+</head>
+<body class="rtl" id="body">
+
+<!-- Loading bar -->
+<div class="loading-bar" id="loadingBar"></div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ════════════════════════════════════
+     HEADER
+════════════════════════════════════ -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <img src="Logo-1.png" alt="Logo" onerror="this.style.display='none'">
+      <div class="logo-text">
+        <div class="main ar">مؤسسة شباب X الخير</div>
+        <div class="main it" style="display:none">Giovani X il Bene</div>
+        <div class="sub">Comunità Islamica · San Donato Milanese</div>
+      </div>
+    </a>
+    <nav>
+      <a onclick="goto('home')"><span class="ar">الرئيسية</span><span class="it" style="display:none">Home</span></a>
+      <a onclick="goto('newsSection')"><span class="ar">الأخبار</span><span class="it" style="display:none">Notizie</span></a>
+      <a onclick="goto('eventsSection')"><span class="ar">الفعاليات</span><span class="it" style="display:none">Eventi</span></a>
+      <a onclick="goto('aboutSection')"><span class="ar">عن المؤسسة</span><span class="it" style="display:none">Chi siamo</span></a>
+      <a onclick="goto('contactSection')"><span class="ar">تواصل</span><span class="it" style="display:none">Contatti</span></a>
+      <button class="lang-toggle" onclick="toggleLang()" id="langBtn">IT</button>
+      <button class="admin-btn" onclick="openAdmin()">⚙ <span class="ar">إدارة</span><span class="it" style="display:none">Admin</span></button>
+    </nav>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════
+     HERO
+════════════════════════════════════ -->
+<section class="hero" id="home">
+  <img class="hero-logo" src="Logo-1.png" alt="Logo" onerror="this.style.display='none'">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Comunità Islamica — المجتمع الإسلامي
+  </div>
+  <h1>
+    <span class="ar">مؤسسة <em>شباب X</em> الخير</span>
+    <span class="it" style="display:none">Giovani <em>X</em> il Bene</span>
+  </h1>
+  <p>
+    <span class="ar">مبادرة إسلامية تجمع أبناء المجتمع المسلم في إيطاليا على قيم الخير والعطاء والتطوع — نبني معاً مجتمعاً أفضل</span>
+    <span class="it" style="display:none">Un'iniziativa islamica che unisce la comunità musulmana in Italia sui valori del bene, della generosità e del volontariato — costruiamo insieme una società migliore</span>
+  </p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;">
+    <a class="hero-cta" onclick="goto('newsSection')">
+      <span class="ar">📰 اكتشف أنشطتنا</span>
+      <span class="it" style="display:none">📰 Scopri le attività</span>
+    </a>
+    <a class="hero-cta-alt" onclick="goto('contactSection')">
+      <span class="ar">تواصل معنا</span>
+      <span class="it" style="display:none">Contattaci</span>
+    </a>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div class="info-strip">
+  <div class="info-strip-inner">
+    <div class="info-item">
+      <div class="info-icon">📍</div>
+      <div class="info-text">
+        <div class="label ar">العنوان</div><div class="label it" style="display:none">Indirizzo</div>
+        <div class="value"><a href="https://maps.google.com/?q=Via+Bruno+Buozzi+33+San+Donato+Milanese" target="_blank">Via Bruno Buozzi 33, San Donato Milanese 20097</a></div>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">🕐</div>
+      <div class="info-text">
+        <div class="label ar">أوقات العمل</div><div class="label it" style="display:none">Orari</div>
+        <div class="value ar" style="color:#4caf50;">مفتوح دائماً</div>
+        <div class="value it" style="display:none;color:#4caf50;">Sempre aperto</div>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📞</div>
+      <div class="info-text">
+        <div class="label ar">الهاتف</div><div class="label it" style="display:none">Telefono</div>
+        <div class="value"><a href="tel:+393664539321">+39 366 453 9321</a></div>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">✉</div>
+      <div class="info-text">
+        <div class="label">Email</div>
+        <div class="value"><a href="mailto:giovanixbene@gmail.com">giovanixbene@gmail.com</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════
+     NEWS
+════════════════════════════════════ -->
+<div class="section" id="newsSection">
+  <div class="section-header">
+    <div class="section-title-wrap">
+      <div class="section-pretitle ar">📰 آخر المستجدات</div>
+      <div class="section-pretitle it" style="display:none">📰 Ultime novità</div>
+      <div class="section-title ar"><span>الأخبار</span> والتحديثات</div>
+      <div class="section-title it" style="display:none">Le <span>Notizie</span></div>
+      <div class="section-line"></div>
+      <div class="section-sub ar">تابع كل جديد من أنشطتنا ومشاركاتنا</div>
+      <div class="section-sub it" style="display:none">Segui le nostre ultime attività</div>
+    </div>
+  </div>
+  <div class="cards-grid" id="newsList"></div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════
+     EVENTS
+════════════════════════════════════ -->
+<div class="section" id="eventsSection">
+  <div class="section-header">
+    <div class="section-title-wrap">
+      <div class="section-pretitle ar">📅 تواريخ مهمة</div>
+      <div class="section-pretitle it" style="display:none">📅 Date importanti</div>
+      <div class="section-title ar"><span>الفعاليات</span> القادمة</div>
+      <div class="section-title it" style="display:none"><span>Gli eventi</span> in arrivo</div>
+      <div class="section-line"></div>
+      <div class="section-sub ar">انضم إلينا في فعالياتنا القادمة</div>
+      <div class="section-sub it" style="display:none">Unisciti ai nostri prossimi eventi</div>
+    </div>
+  </div>
+  <div class="cards-grid" id="eventsList"></div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════
+     ABOUT
+════════════════════════════════════ -->
+<div class="section" id="aboutSection">
+  <div class="about-wrap">
+    <div class="about-logo-side">
+      <img src="Logo-1.png" alt="Logo" onerror="this.style.display='none'">
+    </div>
+    <div class="about-text-side">
+      <h2 class="ar">من نحن؟</h2>
+      <h2 class="it" style="display:none">Chi siamo?</h2>
+      <p class="ar"><strong>مؤسسة شباب X الخير</strong> هي مبادرة إسلامية شبابية تجمع أبناء المجتمع المسلم في إيطاليا من مختلف الأصول والثقافات على قيم مشتركة: التطوع، التعاون، والعطاء.</p>
+      <p class="it" style="display:none"><strong>Giovani X il Bene</strong> è un'iniziativa islamica giovanile che riunisce i membri della comunità musulmana in Italia, di diverse origini e culture, attorno a valori comuni: volontariato, cooperazione e generosità.</p>
+      <p class="ar">نعمل في قلب مدينة سان دوناتو ميلانيزي لخدمة جميع أبناء المجتمع الإسلامي وتعزيز روح التعاون والتضامن بين الجميع.</p>
+      <p class="it" style="display:none">Operiamo nel cuore di San Donato Milanese al servizio di tutta la comunità islamica, promuovendo lo spirito di cooperazione e solidarietà tra tutti.</p>
+      <div class="about-stat-row">
+        <div class="about-stat">
+          <span class="num">🇮🇹</span>
+          <span class="lbl ar">إيطاليا</span><span class="lbl it" style="display:none">Italia</span>
+        </div>
+        <div class="about-stat">
+          <span class="num">🤝</span>
+          <span class="lbl ar">تطوع</span><span class="lbl it" style="display:none">Volontariato</span>
+        </div>
+        <div class="about-stat">
+          <span class="num">🕌</span>
+          <span class="lbl ar">مجتمع إسلامي</span><span class="lbl it" style="display:none">Comunità</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAP -->
+<div class="map-section">
+  <div class="map-inner">
+    <div class="section-title-wrap" style="margin-bottom:28px;">
+      <div class="section-pretitle ar">📍 الموقع</div>
+      <div class="section-pretitle it" style="display:none">📍 Dove siamo</div>
+      <div class="section-title ar"><span>اعثر علينا</span> على الخريطة</div>
+      <div class="section-title it" style="display:none"><span>Trovaci</span> sulla mappa</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.5!2d9.2621!3d45.4075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6a8c8c8c8c9%3A0x123456789!2sVia+Bruno+Buozzi+33%2C+20097+San+Donato+Milanese+MI%2C+Italy!5e0!3m2!1sit!2sit!4v1700000000000" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mappa" style="height:380px;"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     CONTACT
+════════════════════════════════════ -->
+<div class="contact-section" id="contactSection">
+  <div class="contact-inner">
+    <img src="Logo-1.png" alt="" style="width:80px;height:80px;object-fit:contain;margin:0 auto 16px;display:block;filter:drop-shadow(0 4px 14px rgba(26,107,30,.5));" onerror="this.style.display='none'">
+    <h2 class="ar">تواصل معنا</h2>
+    <h2 class="it" style="display:none">Contattaci</h2>
+    <p class="ar">نحن هنا للإجابة على استفساراتك والترحيب بكل متطوع جديد من المجتمع الإسلامي وخارجه</p>
+    <p class="it" style="display:none">Siamo qui per rispondere alle tue domande e accogliere ogni nuovo volontario dalla comunità islamica e non solo</p>
+    <div class="contact-grid">
+      <a class="contact-card" href="https://www.facebook.com/GiovaniXilBene" target="_blank">
+        <span class="cc-icon">📘</span>
+        <span class="cc-label">Facebook</span>
+        <span class="cc-val">GiovaniXilBene</span>
+      </a>
+      <a class="contact-card" href="mailto:giovanixbene@gmail.com">
+        <span class="cc-icon">✉️</span>
+        <span class="cc-label">Email</span>
+        <span class="cc-val">giovanixbene@gmail.com</span>
+      </a>
+      <a class="contact-card" href="tel:+393664539321">
+        <span class="cc-icon">📞</span>
+        <span class="cc-label ar">هاتف</span><span class="cc-label it" style="display:none">Tel</span>
+        <span class="cc-val">+39 366 453 9321</span>
+      </a>
+      <a class="contact-card" href="https://maps.google.com/?q=Via+Bruno+Buozzi+33+San+Donato+Milanese" target="_blank">
+        <span class="cc-icon">📍</span>
+        <span class="cc-label ar">الموقع</span><span class="cc-label it" style="display:none">Mappa</span>
+        <span class="cc-val">San Donato Milanese</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>Giovani X il Bene</strong> — مؤسسة شباب X الخير | Comunità Islamica<br>
+  Via Bruno Buozzi 33, San Donato Milanese (MI) 20097 ·
+  <a href="mailto:giovanixbene@gmail.com">giovanixbene@gmail.com</a> ·
+  <a href="tel:+393664539321">+39 366 453 9321</a><br>
+  <span style="color:rgba(255,255,255,.22);">© 2025 Giovani X il Bene · Built with ❤</span>
+</footer>
+
+<!-- ════════════════════════════════════
+     ADMIN PANEL
+════════════════════════════════════ -->
+<div class="admin-panel" id="adminPanel" onclick="if(event.target===this)closeAdmin()">
+  <div class="admin-sidebar">
+    <div class="admin-top">
+      <h2>⚙ <span class="ar">لوحة الإدارة</span><span class="it" style="display:none">Pannello Admin</span></h2>
+      <button class="btn-close-admin" onclick="closeAdmin()">✕ <span class="ar">إغلاق</span><span class="it" style="display:none">Chiudi</span></button>
+    </div>
+
+    <!-- DB STATUS -->
+    <div class="db-status" id="dbStatus">
+      <div class="db-status-dot"></div>
+      <span id="dbStatusText">...</span>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="adminLogin">
+      <div class="admin-login-wrap">
+        <div class="al-logo">🔐</div>
+        <h3 class="ar">دخول المدير</h3>
+        <h3 class="it" style="display:none">Accesso Admin</h3>
+        <p id="loginSubtext">
+          <span class="ar">أدخل كلمة المرور للمتابعة</span>
+          <span class="it" style="display:none">Inserisci la password per continuare</span>
+        </p>
+        <input class="admin-input" type="password" id="pwInput" placeholder="Password" style="text-align:center;letter-spacing:3px;" onkeydown="if(event.key==='Enter')doLogin()">
+        <button class="btn-action btn-green" onclick="doLogin()" style="margin-top:5px;">
+          <span class="ar">🔓 دخول</span><span class="it" style="display:none">🔓 Accedi</span>
+        </button>
+        <p id="loginError"></p>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="adminDash" style="display:none">
+      <div class="tab-btns">
+        <button class="tab-btn active" onclick="switchTab('tabNews',this)">
+          <span class="ar">📰 خبر</span><span class="it" style="display:none">📰 Notizia</span>
+        </button>
+        <button class="tab-btn" onclick="switchTab('tabEvent',this)">
+          <span class="ar">📅 فعالية</span><span class="it" style="display:none">📅 Evento</span>
+        </button>
+        <button class="tab-btn" onclick="switchTab('tabSettings',this)">
+          <span class="ar">⚙ إعدادات</span><span class="it" style="display:none">⚙ Impost.</span>
+        </button>
+      </div>
+
+      <!-- TAB NEWS -->
+      <div class="tab-panel active" id="tabNews">
+        <div class="admin-section">
+          <h3><span class="ar">نشر خبر جديد</span><span class="it" style="display:none">Nuova Notizia</span></h3>
+          <input class="admin-input" id="nTitleAr" type="text" placeholder="العنوان بالعربية *">
+          <input class="admin-input" id="nTitleIt" type="text" placeholder="Titolo in italiano">
+          <textarea class="admin-textarea" id="nTextAr" placeholder="النص بالعربية"></textarea>
+          <textarea class="admin-textarea" id="nTextIt" placeholder="Testo in italiano"></textarea>
+          <div class="photo-upload-area" onclick="document.getElementById('nImgFile').click()">
+            <label class="upload-btn-label" style="pointer-events:none;">
+              📷 <span class="ar">رفع صور (يمكن اختيار أكثر من صورة)</span><span class="it" style="display:none">📷 Carica foto (puoi sceglierne più)</span>
+            </label>
+            <span class="upload-hint ar">JPG · PNG · WEBP — حجم أقصى 2MB لكل صورة</span>
+            <span class="upload-hint it" style="display:none">JPG · PNG · WEBP — max 2MB per foto</span>
+            <input type="file" id="nImgFile" accept="image/*" multiple onchange="handlePhotoUpload(this,'nPhotos','nThumbsWrap')">
+          </div>
+          <div class="photo-thumbs" id="nThumbsWrap"></div>
+          <input type="hidden" id="nPhotos" value="[]">
+          <button class="btn-action btn-green" onclick="addPost()">
+            <span class="ar">📰 نشر الخبر</span><span class="it" style="display:none">📰 Pubblica</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB EVENT -->
+      <div class="tab-panel" id="tabEvent">
+        <div class="admin-section">
+          <h3><span class="ar">إضافة فعالية جديدة</span><span class="it" style="display:none">Nuovo Evento</span></h3>
+          <input class="admin-input" id="eTitleAr" type="text" placeholder="اسم الفعالية بالعربية *">
+          <input class="admin-input" id="eTitleIt" type="text" placeholder="Nome evento in italiano">
+          <textarea class="admin-textarea" id="eTextAr" placeholder="وصف الفعالية بالعربية"></textarea>
+          <textarea class="admin-textarea" id="eTextIt" placeholder="Descrizione in italiano"></textarea>
+          <span class="date-label"><span class="ar">التاريخ (اختياري)</span><span class="it" style="display:none">Data (opzionale)</span></span>
+          <input class="admin-input" id="eDate" type="date">
+          <div class="photo-upload-area" onclick="document.getElementById('eImgFile').click()">
+            <label class="upload-btn-label" style="pointer-events:none;">
+              📷 <span class="ar">رفع صور (يمكن اختيار أكثر من صورة)</span><span class="it" style="display:none">📷 Carica foto (puoi sceglierne più)</span>
+            </label>
+            <span class="upload-hint ar">JPG · PNG · WEBP — حجم أقصى 2MB لكل صورة</span>
+            <span class="upload-hint it" style="display:none">JPG · PNG · WEBP — max 2MB per foto</span>
+            <input type="file" id="eImgFile" accept="image/*" multiple onchange="handlePhotoUpload(this,'ePhotos','eThumbsWrap')">
+          </div>
+          <div class="photo-thumbs" id="eThumbsWrap"></div>
+          <input type="hidden" id="ePhotos" value="[]">
+          <button class="btn-action btn-red" onclick="addEvent()">
+            <span class="ar">📅 إضافة الفعالية</span><span class="it" style="display:none">📅 Aggiungi</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB SETTINGS -->
+      <div class="tab-panel" id="tabSettings">
+        <div class="admin-section">
+          <h3><span class="ar">تغيير كلمة المرور</span><span class="it" style="display:none">Cambia Password</span></h3>
+          <input class="admin-input" id="newPw" type="password" placeholder="New password (min 6 chars)">
+          <input class="admin-input" id="newPwConfirm" type="password" placeholder="Confirm password">
+          <button class="btn-action btn-green" onclick="changePw()">
+            <span class="ar">💾 حفظ كلمة المرور</span><span class="it" style="display:none">💾 Salva Password</span>
+          </button>
+        </div>
+        <div class="admin-section" style="border-top:1px solid rgba(255,255,255,.07);padding-top:18px;">
+          <h3><span class="ar">حالة قاعدة البيانات</span><span class="it" style="display:none">Stato Database</span></h3>
+          <p style="font-size:.77rem;opacity:.4;line-height:1.75;">
+            <span class="ar">البيانات تُحفظ في Supabase عند الإعداد الصحيح، وإلا تُستخدم الذاكرة المحلية. راجع ملف SETUP_GUIDE.md.</span>
+            <span class="it" style="display:none">I dati vengono salvati su Supabase se configurato, altrimenti si usa il localStorage. Vedi SETUP_GUIDE.md.</span>
+          </p>
+          <button class="btn-action btn-ghost" onclick="logout()" style="margin-top:10px;">
+            <span class="ar">↩ تسجيل الخروج</span><span class="it" style="display:none">↩ Esci</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     EDIT MODAL
+════════════════════════════════════ -->
+<div class="edit-modal" id="editModal" onclick="if(event.target===this)closeEditModal()">
+  <div class="edit-box">
+    <div class="edit-box-header">
+      <h3>✏️ <span class="ar">تعديل</span><span class="it" style="display:none">Modifica</span></h3>
+      <span id="editTypeLabel"></span>
+    </div>
+    <input type="hidden" id="editId">
+    <input type="hidden" id="editType">
+    <input class="admin-input" id="editTitleAr" type="text" placeholder="العنوان بالعربية *">
+    <input class="admin-input" id="editTitleIt" type="text" placeholder="Titolo in italiano">
+    <textarea class="admin-textarea" id="editTextAr" placeholder="النص بالعربية"></textarea>
+    <textarea class="admin-textarea" id="editTextIt" placeholder="Testo in italiano"></textarea>
+    <div id="editDateWrap" style="display:none">
+      <span class="date-label"><span class="ar">التاريخ</span><span class="it" style="display:none">Data</span></span>
+      <input class="admin-input" id="editDate" type="date">
+    </div>
+    <div class="photo-upload-area" onclick="document.getElementById('editImgFile').click()">
+      <label class="upload-btn-label" style="pointer-events:none;">
+        📷 <span class="ar">رفع / تغيير الصور</span><span class="it" style="display:none">📷 Carica / cambia foto</span>
+      </label>
+      <span class="upload-hint ar">اختر صوراً جديدة لاستبدال الحالية أو إضافة المزيد</span>
+      <span class="upload-hint it" style="display:none">Scegli nuove foto per sostituire o aggiungere</span>
+      <input type="file" id="editImgFile" accept="image/*" multiple onchange="handlePhotoUpload(this,'editPhotos','editThumbsWrap')">
+    </div>
+    <div class="photo-thumbs" id="editThumbsWrap"></div>
+    <input type="hidden" id="editPhotos" value="[]">
+    <button class="btn-action btn-green" onclick="saveEdit()">
+      <span class="ar">✔ حفظ التعديلات</span><span class="it" style="display:none">✔ Salva Modifiche</span>
+    </button>
+    <button class="btn-ghost" onclick="closeEditModal()">
+      <span class="ar">إلغاء</span><span class="it" style="display:none">Annulla</span>
+    </button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     CONFIRM DELETE DIALOG
+════════════════════════════════════ -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <span class="ci">🗑️</span>
+    <h3 class="ar">هل أنت متأكد؟</h3>
+    <h3 class="it" style="display:none">Sei sicuro?</h3>
+    <p class="ar">سيتم حذف هذا العنصر نهائياً ولا يمكن التراجع عن هذا الإجراء.</p>
+    <p class="it" style="display:none">Questo elemento verrà eliminato definitivamente e non sarà possibile annullare l'azione.</p>
+    <div class="confirm-btns">
+      <button id="confirmYes"><span class="ar">نعم، احذف</span><span class="it" style="display:none">Sì, elimina</span></button>
+      <button id="confirmNo"><span class="ar">إلغاء</span><span class="it" style="display:none">Annulla</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════ -->
+<script>
+/* ═══ STATE ═══ */
+var isRTL = true;
+var isLoggedIn = false;
+var adminPassword = localStorage.getItem('gxb_pw') || null;
+var posts  = JSON.parse(localStorage.getItem('gxb_posts')  || '[]');
+var events = JSON.parse(localStorage.getItem('gxb_events') || '[]');
+
+/* ═══ UI HELPERS ═══ */
+function showLoading(on){
+  document.getElementById('loadingBar').classList.toggle('active', on);
+}
+function showToast(msg, type){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + (type||'success') + ' show';
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+function confirmDialog(msg, cb){
+  var overlay = document.getElementById('confirmOverlay');
+  overlay.classList.add('open');
+  applyLang();
+  document.getElementById('confirmYes').onclick = function(){
+    overlay.classList.remove('open');
+    cb();
+  };
+  document.getElementById('confirmNo').onclick = function(){
+    overlay.classList.remove('open');
+  };
+}
+
+/* ═══ LANGUAGE ═══ */
+function toggleLang(){
+  isRTL = !isRTL;
+  var b = document.getElementById('body');
+  b.className = isRTL ? 'rtl' : 'ltr';
+  b.setAttribute('lang', isRTL ? 'ar' : 'it');
+  b.setAttribute('dir',  isRTL ? 'rtl' : 'ltr');
+  document.getElementById('langBtn').textContent = isRTL ? 'IT' : 'AR';
+  applyLang();
+}
+function applyLang(){
+  document.querySelectorAll('.ar').forEach(el => el.style.display = isRTL ? '' : 'none');
+  document.querySelectorAll('.it').forEach(el => el.style.display = isRTL ? 'none' : '');
+}
+function goto(id){
+  var el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+/* ═══ DB STATUS ═══ */
+function updateDbStatus(){
+  var el = document.getElementById('dbStatus');
+  var txt = document.getElementById('dbStatusText');
+  if(window.SUPABASE_READY){
+    el.className = 'db-status ok';
+    txt.textContent = isRTL ? '✅ Supabase متصل — البيانات محفوظة للجميع' : '✅ Supabase connesso — dati condivisi';
+  } else {
+    el.className = 'db-status warn';
+    txt.textContent = isRTL ? '⚠ وضع محلي فقط — اتبع SETUP_GUIDE.md لربط Supabase' : '⚠ Modalità locale — segui SETUP_GUIDE.md per Supabase';
+  }
+}
+
+/* ═══ ADMIN AUTH ═══ */
+function openAdmin(){
+  document.getElementById('adminPanel').classList.add('open');
+  updateDbStatus();
+  var sub = document.getElementById('loginSubtext');
+  if(!adminPassword){
+    sub.innerHTML = '<span class="ar">أول مرة — اختر كلمة مرور (6 أحرف على الأقل)</span><span class="it" style="display:none">Prima volta — scegli una password (min 6 caratteri)</span>';
+  }
+  applyLang();
+  isLoggedIn ? showDash() : showLogin();
+}
+function closeAdmin(){ document.getElementById('adminPanel').classList.remove('open'); }
+function showLogin(){
+  document.getElementById('adminLogin').style.display = '';
+  document.getElementById('adminDash').style.display  = 'none';
+}
+function showDash(){
+  document.getElementById('adminLogin').style.display = 'none';
+  document.getElementById('adminDash').style.display  = '';
+}
+function doLogin(){
+  var pw  = document.getElementById('pwInput').value;
+  var err = document.getElementById('loginError');
+  if(!adminPassword){
+    if(pw.length < 6){
+      err.style.display='block';
+      err.textContent = isRTL ? 'كلمة المرور قصيرة جداً (6 أحرف على الأقل)' : 'Password troppo corta (min 6 caratteri)';
+      return;
+    }
+    adminPassword = pw; localStorage.setItem('gxb_pw', pw);
+    isLoggedIn=true; err.style.display='none'; showDash();
+    showToast(isRTL ? '🎉 تم إنشاء كلمة المرور بنجاح' : '🎉 Password creata!');
+    renderPosts(); renderEvents(); return;
+  }
+  if(pw === adminPassword){
+    isLoggedIn=true; err.style.display='none'; showDash();
+    showToast(isRTL ? '👋 مرحباً بك!' : '👋 Benvenuto!');
+    renderPosts(); renderEvents();
+  } else {
+    err.style.display='block';
+    err.textContent = isRTL ? '❌ كلمة المرور غير صحيحة' : '❌ Password errata';
+    document.getElementById('pwInput').value='';
+  }
+}
+function logout(){
+  isLoggedIn=false;
+  document.getElementById('pwInput').value='';
+  showLogin(); renderPosts(); renderEvents();
+  closeAdmin();
+  showToast(isRTL ? '✅ تم تسجيل الخروج' : '✅ Disconnesso');
+}
+function changePw(){
+  var np  = document.getElementById('newPw').value.trim();
+  var np2 = document.getElementById('newPwConfirm').value.trim();
+  if(!np || np.length < 6){
+    showToast(isRTL ? '⚠ يجب أن تكون 6 أحرف على الأقل' : '⚠ Minimo 6 caratteri', 'error'); return;
+  }
+  if(np !== np2){
+    showToast(isRTL ? '⚠ كلمتا المرور غير متطابقتين' : '⚠ Le password non corrispondono', 'error'); return;
+  }
+  adminPassword = np; localStorage.setItem('gxb_pw', np);
+  document.getElementById('newPw').value = '';
+  document.getElementById('newPwConfirm').value = '';
+  showToast(isRTL ? '✅ تم تغيير كلمة المرور' : '✅ Password aggiornata');
+}
+
+/* ═══ TABS ═══ */
+function switchTab(tabId, btn){
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ═══ PHOTO UPLOAD ═══ */
+function handlePhotoUpload(input, hiddenId, thumbsId){
+  var files = Array.from(input.files);
+  if(!files.length) return;
+  var existing = [];
+  try { existing = JSON.parse(document.getElementById(hiddenId).value || '[]'); } catch(e){}
+  var pending = files.length;
+  files.forEach(function(file){
+    if(file.size > 2.5 * 1024 * 1024){
+      showToast(isRTL ? '⚠ الصورة كبيرة (حد أقصى 2MB)' : '⚠ Foto troppo grande (max 2MB)', 'error');
+      pending--; if(pending<=0){ document.getElementById(hiddenId).value=JSON.stringify(existing); renderThumbs(existing,hiddenId,thumbsId); } return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(e){
+      existing.push(e.target.result);
+      pending--;
+      if(pending <= 0){
+        document.getElementById(hiddenId).value = JSON.stringify(existing);
+        renderThumbs(existing, hiddenId, thumbsId);
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+  input.value = '';
+}
+function renderThumbs(photos, hiddenId, thumbsId){
+  var wrap = document.getElementById(thumbsId);
+  if(!wrap) return;
+  if(!photos || !photos.length){ wrap.innerHTML=''; return; }
+  wrap.innerHTML = photos.map(function(src, i){
+    return '<div class="photo-thumb">'
+      +'<img src="'+src+'">'
+      +'<button class="photo-thumb-del" onclick="removePhoto(\''+hiddenId+'\',\''+thumbsId+'\','+i+')" title="Remove">✕</button>'
+      +'</div>';
+  }).join('');
+}
+function removePhoto(hiddenId, thumbsId, idx){
+  var arr = [];
+  try { arr = JSON.parse(document.getElementById(hiddenId).value || '[]'); } catch(e){}
+  arr.splice(idx, 1);
+  document.getElementById(hiddenId).value = JSON.stringify(arr);
+  renderThumbs(arr, hiddenId, thumbsId);
+}
+
+/* ═══ SUPABASE HELPERS ═══ */
+async function dbSave(table, data){
+  if(!window.SUPABASE_READY) return null;
+  try {
+    const { data: result, error } = await _sb.from(table).insert([data]).select().single();
+    if(error) throw error;
+    return result;
+  } catch(e){ console.error('DB save error:', e); return null; }
+}
+async function dbUpdate(table, id, data){
+  if(!window.SUPABASE_READY) return null;
+  try {
+    const { error } = await _sb.from(table).update(data).eq('id', id);
+    if(error) throw error;
+    return true;
+  } catch(e){ console.error('DB update error:', e); return null; }
+}
+async function dbDelete(table, id){
+  if(!window.SUPABASE_READY) return null;
+  try {
+    const { error } = await _sb.from(table).delete().eq('id', id);
+    if(error) throw error;
+    return true;
+  } catch(e){ console.error('DB delete error:', e); return null; }
+}
+async function dbLoad(table){
+  if(!window.SUPABASE_READY) return null;
+  try {
+    const { data, error } = await _sb.from(table).select('*').order('created_at', {ascending:false});
+    if(error) throw error;
+    return data;
+  } catch(e){ console.error('DB load error:', e); return null; }
+}
+
+/* ═══ INIT — load from Supabase if available ═══ */
+async function initData(){
+  showLoading(true);
+  if(window.SUPABASE_READY){
+    var [dbPosts, dbEvents] = await Promise.all([dbLoad('posts'), dbLoad('events')]);
+    if(dbPosts)  { posts  = dbPosts;  localStorage.setItem('gxb_posts',  JSON.stringify(posts));  }
+    if(dbEvents) { events = dbEvents; localStorage.setItem('gxb_events', JSON.stringify(events)); }
+  }
+  renderPosts(); renderEvents();
+  showLoading(false);
+}
+
+/* ═══ ADD POST ═══ */
+async function addPost(){
+  var tAr = document.getElementById('nTitleAr').value.trim();
+  var tIt = document.getElementById('nTitleIt').value.trim();
+  var xAr = document.getElementById('nTextAr').value.trim();
+  var xIt = document.getElementById('nTextIt').value.trim();
+  var photos = [];
+  try { photos = JSON.parse(document.getElementById('nPhotos').value || '[]'); } catch(e){}
+  if(!tAr && !tIt){ showToast(isRTL ? '⚠ أدخل عنواناً' : '⚠ Inserisci un titolo', 'error'); return; }
+
+  showLoading(true);
+  var item = {
+    title_ar: tAr||tIt, title_it: tIt||tAr,
+    text_ar: xAr||xIt,  text_it: xIt||xAr,
+    photos: photos,
+    img: photos[0]||'',
+    date_display: new Date().toLocaleDateString('ar-EG'),
+    created_at: new Date().toISOString()
+  };
+
+  if(window.SUPABASE_READY){
+    var saved = await dbSave('posts', item);
+    if(saved){ item.id = saved.id; } else {
+      showToast(isRTL ? '⚠ خطأ في الحفظ، تم الحفظ محلياً' : '⚠ Errore DB, salvato localmente', 'error');
+      item.id = Date.now();
+    }
+  } else { item.id = Date.now(); }
+
+  posts.unshift(item);
+  localStorage.setItem('gxb_posts', JSON.stringify(posts));
+  ['nTitleAr','nTitleIt','nTextAr','nTextIt'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('nPhotos').value='[]';
+  document.getElementById('nThumbsWrap').innerHTML='';
+  renderPosts();
+  showLoading(false);
+  showToast(isRTL ? '✅ تم نشر الخبر بنجاح!' : '✅ Notizia pubblicata!');
+}
+
+/* ═══ DELETE POST ═══ */
+function delPost(id){
+  confirmDialog('', async function(){
+    showLoading(true);
+    if(window.SUPABASE_READY) await dbDelete('posts', id);
+    posts = posts.filter(p => p.id !== id);
+    localStorage.setItem('gxb_posts', JSON.stringify(posts));
+    renderPosts();
+    showLoading(false);
+    showToast(isRTL ? '🗑 تم حذف الخبر' : '🗑 Notizia eliminata');
+  });
+}
+
+/* ═══ OPEN EDIT POST ═══ */
+function openEditPost(id){
+  var p = posts.find(x => x.id === id || x.id == id); if(!p) return;
+  document.getElementById('editId').value    = id;
+  document.getElementById('editType').value  = 'post';
+  document.getElementById('editTypeLabel').textContent = isRTL ? 'خبر' : 'Notizia';
+  document.getElementById('editTitleAr').value = p.title_ar||p.titleAr||'';
+  document.getElementById('editTitleIt').value = p.title_it||p.titleIt||'';
+  document.getElementById('editTextAr').value  = p.text_ar||p.textAr||'';
+  document.getElementById('editTextIt').value  = p.text_it||p.textIt||'';
+  document.getElementById('editDateWrap').style.display = 'none';
+  var existingPhotos = p.photos || (p.img ? [p.img] : []);
+  document.getElementById('editPhotos').value = JSON.stringify(existingPhotos);
+  renderThumbs(existingPhotos, 'editPhotos', 'editThumbsWrap');
+  document.getElementById('editModal').classList.add('open');
+  applyLang();
+}
+
+/* ═══ ADD EVENT ═══ */
+async function addEvent(){
+  var tAr = document.getElementById('eTitleAr').value.trim();
+  var tIt = document.getElementById('eTitleIt').value.trim();
+  var xAr = document.getElementById('eTextAr').value.trim();
+  var xIt = document.getElementById('eTextIt').value.trim();
+  var photos = [];
+  try { photos = JSON.parse(document.getElementById('ePhotos').value || '[]'); } catch(e){}
+  var date = document.getElementById('eDate').value;
+  if(!tAr && !tIt){ showToast(isRTL ? '⚠ أدخل اسم الفعالية' : '⚠ Inserisci il nome', 'error'); return; }
+
+  showLoading(true);
+  var dateStr = '';
+  if(date){ var d=new Date(date+'T12:00:00'); dateStr=d.toLocaleDateString('ar-EG',{year:'numeric',month:'long',day:'numeric'}); }
+
+  var item = {
+    title_ar: tAr||tIt, title_it: tIt||tAr,
+    text_ar: xAr||xIt,  text_it: xIt||xAr,
+    photos: photos,
+    img: photos[0]||'',
+    event_date: date||null, date_str: dateStr,
+    created_at: new Date().toISOString()
+  };
+
+  if(window.SUPABASE_READY){
+    var saved = await dbSave('events', item);
+    if(saved){ item.id = saved.id; } else {
+      showToast(isRTL ? '⚠ خطأ في الحفظ، تم الحفظ محلياً' : '⚠ Errore DB, salvato localmente', 'error');
+      item.id = Date.now();
+    }
+  } else { item.id = Date.now(); }
+
+  events.unshift(item);
+  localStorage.setItem('gxb_events', JSON.stringify(events));
+  ['eTitleAr','eTitleIt','eTextAr','eTextIt','eDate'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('ePhotos').value='[]';
+  document.getElementById('eThumbsWrap').innerHTML='';
+  renderEvents();
+  showLoading(false);
+  showToast(isRTL ? '✅ تمت إضافة الفعالية!' : '✅ Evento aggiunto!');
+}
+
+/* ═══ DELETE EVENT ═══ */
+function delEvent(id){
+  confirmDialog('', async function(){
+    showLoading(true);
+    if(window.SUPABASE_READY) await dbDelete('events', id);
+    events = events.filter(e => e.id !== id);
+    localStorage.setItem('gxb_events', JSON.stringify(events));
+    renderEvents();
+    showLoading(false);
+    showToast(isRTL ? '🗑 تم حذف الفعالية' : '🗑 Evento eliminato');
+  });
+}
+
+/* ═══ OPEN EDIT EVENT ═══ */
+function openEditEvent(id){
+  var ev = events.find(x => x.id === id || x.id == id); if(!ev) return;
+  document.getElementById('editId').value    = id;
+  document.getElementById('editType').value  = 'event';
+  document.getElementById('editTypeLabel').textContent = isRTL ? 'فعالية' : 'Evento';
+  document.getElementById('editTitleAr').value = ev.title_ar||ev.titleAr||'';
+  document.getElementById('editTitleIt').value = ev.title_it||ev.titleIt||'';
+  document.getElementById('editTextAr').value  = ev.text_ar||ev.textAr||'';
+  document.getElementById('editTextIt').value  = ev.text_it||ev.textIt||'';
+  document.getElementById('editDate').value    = ev.event_date||ev.date||'';
+  document.getElementById('editDateWrap').style.display = '';
+  var existingPhotos = ev.photos || (ev.img ? [ev.img] : []);
+  document.getElementById('editPhotos').value = JSON.stringify(existingPhotos);
+  renderThumbs(existingPhotos, 'editPhotos', 'editThumbsWrap');
+  document.getElementById('editModal').classList.add('open');
+  applyLang();
+}
+
+/* ═══ SAVE EDIT ═══ */
+async function saveEdit(){
+  var id   = document.getElementById('editId').value;
+  var type = document.getElementById('editType').value;
+  var tAr  = document.getElementById('editTitleAr').value.trim();
+  var tIt  = document.getElementById('editTitleIt').value.trim();
+  var xAr  = document.getElementById('editTextAr').value.trim();
+  var xIt  = document.getElementById('editTextIt').value.trim();
+  var photos = [];
+  try { photos = JSON.parse(document.getElementById('editPhotos').value || '[]'); } catch(e){}
+  if(!tAr && !tIt){ showToast(isRTL ? '⚠ العنوان مطلوب' : '⚠ Titolo obbligatorio', 'error'); return; }
+
+  showLoading(true);
+
+  if(type === 'post'){
+    var updates = { title_ar:tAr||tIt, title_it:tIt||tAr, text_ar:xAr||xIt, text_it:xIt||xAr, photos:photos, img:photos[0]||'' };
+    if(window.SUPABASE_READY) await dbUpdate('posts', id, updates);
+    var idx = posts.findIndex(p => p.id==id);
+    if(idx >= 0) posts[idx] = Object.assign({}, posts[idx], updates);
+    localStorage.setItem('gxb_posts', JSON.stringify(posts));
+    renderPosts();
+  } else {
+    var date = document.getElementById('editDate').value;
+    var dateStr='';
+    if(date){ var d=new Date(date+'T12:00:00'); dateStr=d.toLocaleDateString('ar-EG',{year:'numeric',month:'long',day:'numeric'}); }
+    var updates = { title_ar:tAr||tIt, title_it:tIt||tAr, text_ar:xAr||xIt, text_it:xIt||xAr, photos:photos, img:photos[0]||'', event_date:date||null, date_str:dateStr };
+    if(window.SUPABASE_READY) await dbUpdate('events', id, updates);
+    var idx = events.findIndex(e => e.id==id);
+    if(idx >= 0) events[idx] = Object.assign({}, events[idx], updates);
+    localStorage.setItem('gxb_events', JSON.stringify(events));
+    renderEvents();
+  }
+
+  closeEditModal();
+  showLoading(false);
+  showToast(isRTL ? '✅ تم حفظ التعديلات' : '✅ Modifiche salvate');
+}
+
+function closeEditModal(){
+  document.getElementById('editModal').classList.remove('open');
+}
+
+/* ═══ ESCAPE HTML ═══ */
+function esc(s){
+  if(!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ═══ GALLERY HTML for card ═══ */
+function galleryHtml(photos, fallbackEmoji, uid){
+  var arr = (photos && photos.length) ? photos : [];
+  if(!arr.length) return '<div class="card-img">'+fallbackEmoji+'</div>';
+  if(arr.length === 1){
+    return '<div class="card-img"><img src="'+arr[0]+'" loading="lazy" onerror="this.parentNode.innerHTML=\''+fallbackEmoji+'\'"><div class="card-img-overlay"></div></div>';
+  }
+  // Multi-photo gallery with prev/next
+  return '<div class="card-gallery" id="gal-'+uid+'">'
+    +'<img src="'+arr[0]+'" loading="lazy" onerror="this.src=\'\'" id="gal-img-'+uid+'">'
+    +'<div class="card-img-overlay"></div>'
+    +'<div class="card-gallery-count">📷 <span id="gal-n-'+uid+'">1</span>/'+arr.length+'</div>'
+    +'<button class="card-gallery-nav card-gallery-prev" onclick="galNav(\''+uid+'\','+JSON.stringify(arr)+',-1)">‹</button>'
+    +'<button class="card-gallery-nav card-gallery-next" onclick="galNav(\''+uid+'\','+JSON.stringify(arr)+',1)">›</button>'
+    +'</div>';
+}
+var galIdx = {};
+function galNav(uid, arr, dir){
+  if(!(uid in galIdx)) galIdx[uid]=0;
+  galIdx[uid] = (galIdx[uid]+dir+arr.length) % arr.length;
+  var img = document.getElementById('gal-img-'+uid);
+  var num = document.getElementById('gal-n-'+uid);
+  if(img) img.src = arr[galIdx[uid]];
+  if(num) num.textContent = galIdx[uid]+1;
+}
+
+/* ═══ ADMIN BUTTONS ═══ */
+function adminBtns(id, type){
+  if(!isLoggedIn) return '';
+  return '<div class="card-admin-btns">'
+    +'<button class="btn-edit" onclick="'+(type==='post'?'openEditPost':'openEditEvent')+'(\''+id+'\')">'
+    +'<span class="ar">✏ تعديل</span><span class="it" style="display:none">✏ Modifica</span></button>'
+    +'<button class="btn-delete" onclick="'+(type==='post'?'delPost':'delEvent')+'(\''+id+'\')">'
+    +'<span class="ar">🗑 حذف</span><span class="it" style="display:none">🗑 Elimina</span></button>'
+    +'</div>';
+}
+
+/* ═══ RENDER POSTS ═══ */
+function renderPosts(){
+  var l = document.getElementById('newsList');
+  if(!posts.length){
+    l.innerHTML='<div class="empty-state"><span class="icon">📰</span><p class="ar">لا توجد أخبار بعد — أضف أول خبر من لوحة الإدارة</p><p class="it" style="display:none">Nessuna notizia ancora — aggiungi la prima dal pannello admin</p></div>';
+    applyLang(); return;
+  }
+  l.innerHTML = posts.map(function(p,i){
+    var tAr = p.title_ar||p.titleAr||'';
+    var tIt = p.title_it||p.titleIt||'';
+    var xAr = p.text_ar||p.textAr||'';
+    var xIt = p.text_it||p.textIt||'';
+    var date = p.date_display||p.date||'';
+    var photos = p.photos || (p.img ? [p.img] : []);
+    var uid = 'p'+i+'_'+(p.id||i);
+    return '<div class="card" style="animation-delay:'+i*.06+'s">'
+      +galleryHtml(photos,'📰',uid)
+      +'<div class="card-body">'
+      +'<span class="card-tag green ar">📰 خبر</span><span class="card-tag green it" style="display:none">📰 Notizia</span>'
+      +'<h3 class="ar">'+esc(tAr)+'</h3><h3 class="it" style="display:none">'+esc(tIt)+'</h3>'
+      +'<p class="ar">'+esc(xAr)+'</p><p class="it" style="display:none">'+esc(xIt)+'</p>'
+      +(date?'<div class="card-date">'+esc(date)+'</div>':'')
+      +adminBtns(p.id,'post')
+      +'</div></div>';
+  }).join('');
+  applyLang();
+}
+
+/* ═══ RENDER EVENTS ═══ */
+function renderEvents(){
+  var l = document.getElementById('eventsList');
+  if(!events.length){
+    l.innerHTML='<div class="empty-state"><span class="icon">📅</span><p class="ar">لا توجد فعاليات مجدولة — أضف فعالية من لوحة الإدارة</p><p class="it" style="display:none">Nessun evento — aggiungine uno dal pannello admin</p></div>';
+    applyLang(); return;
+  }
+  l.innerHTML = events.map(function(ev,i){
+    var tAr = ev.title_ar||ev.titleAr||'';
+    var tIt = ev.title_it||ev.titleIt||'';
+    var xAr = ev.text_ar||ev.textAr||'';
+    var xIt = ev.text_it||ev.textIt||'';
+    var dateStr = ev.date_str||ev.dateStr||ev.event_date||ev.date||'';
+    var photos = ev.photos || (ev.img ? [ev.img] : []);
+    var uid = 'e'+i+'_'+(ev.id||i);
+    return '<div class="card" style="animation-delay:'+i*.06+'s">'
+      +galleryHtml(photos,'📅',uid)
+      +'<div class="card-body">'
+      +'<span class="card-tag red ar">📅 فعالية</span><span class="card-tag red it" style="display:none">📅 Evento</span>'
+      +'<h3 class="ar">'+esc(tAr)+'</h3><h3 class="it" style="display:none">'+esc(tIt)+'</h3>'
+      +'<p class="ar">'+esc(xAr)+'</p><p class="it" style="display:none">'+esc(xIt)+'</p>'
+      +(dateStr?'<div class="card-date" style="color:var(--red)">'+esc(dateStr)+'</div>':'')
+      +adminBtns(ev.id,'event')
+      +'</div></div>';
+  }).join('');
+  applyLang();
+}
+
+/* ═══ BOOT ═══ */
+initData();
+</script>
+</body>
+</html>
