@@ -18,7 +18,7 @@
 
   const _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   window._sb = _sb;
-  window.SUPABASE_READY = (SUPABASE_URL !== 'YOUR_SUPABASE_URL');
+  window.SUPABASE_READY = (SUPABASE_URL !== 'https://apahqiiaqbqyjhygzvpu.supabase.co/rest/v1/');
 </script>
 
 <style>
@@ -431,6 +431,142 @@ body.ltr .about-text-side h2{font-family:'Playfair Display',serif;}
 .card-gallery-nav:hover{background:rgba(26,107,30,.7);}
 .card-gallery-prev{left:6px;}
 .card-gallery-next{right:6px;}
+
+/* ════════════════════════════════════
+   DETAIL MODAL (click-to-zoom)
+════════════════════════════════════ */
+.detail-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.88);z-index:5000;
+  align-items:center;justify-content:center;
+  padding:12px;backdrop-filter:blur(8px);
+  animation:fadeBg .2s both;
+}
+@keyframes fadeBg{from{opacity:0}to{opacity:1}}
+.detail-overlay.open{display:flex;}
+.detail-box{
+  background:var(--black-card);
+  border-radius:18px;
+  width:100%;max-width:680px;
+  max-height:92vh;
+  overflow-y:auto;
+  color:white;
+  border:1.5px solid rgba(26,107,30,.3);
+  box-shadow:0 30px 80px rgba(0,0,0,.7);
+  animation:popIn .28s cubic-bezier(.34,1.56,.64,1) both;
+  position:relative;
+}
+/* close btn */
+.detail-close{
+  position:sticky;top:12px;
+  float:right;margin:12px 12px 0 0;
+  background:rgba(0,0,0,.55);
+  border:1.5px solid rgba(255,255,255,.18);
+  color:white;width:36px;height:36px;
+  border-radius:50%;cursor:pointer;
+  font-size:1rem;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;z-index:2;flex-shrink:0;
+}
+.detail-close:hover{background:var(--red);border-color:var(--red);}
+/* image slider */
+.detail-slider{
+  width:100%;position:relative;
+  background:var(--black);
+  border-radius:18px 18px 0 0;
+  overflow:hidden;
+}
+.detail-slider-track{
+  display:flex;
+  transition:transform .38s cubic-bezier(.4,0,.2,1);
+}
+.detail-slide{
+  min-width:100%;height:320px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--black);flex-shrink:0;
+}
+.detail-slide img{
+  width:100%;height:100%;object-fit:contain;
+  display:block;
+}
+.detail-empty-img{
+  height:200px;display:flex;align-items:center;justify-content:center;
+  font-size:4rem;opacity:.2;
+  border-radius:18px 18px 0 0;background:var(--black);
+}
+/* slider nav */
+.detail-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(0,0,0,.55);border:1.5px solid rgba(255,255,255,.2);
+  color:white;width:40px;height:40px;border-radius:50%;
+  cursor:pointer;font-size:1.1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;z-index:2;
+}
+.detail-nav:hover{background:var(--green);border-color:var(--green);}
+.detail-nav-prev{left:12px;}
+.detail-nav-next{right:12px;}
+/* dots */
+.detail-dots{
+  display:flex;gap:6px;justify-content:center;
+  padding:10px 0 4px;background:var(--black);
+}
+.detail-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(255,255,255,.25);
+  border:none;cursor:pointer;padding:0;
+  transition:all .2s;
+}
+.detail-dot.active{background:var(--green-light);transform:scale(1.3);}
+/* body */
+.detail-body{padding:22px 26px 28px;}
+.detail-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:.65rem;font-weight:700;
+  padding:3px 10px;border-radius:5px;
+  margin-bottom:12px;text-transform:uppercase;letter-spacing:.6px;
+}
+.detail-tag.green{background:rgba(26,107,30,.2);color:var(--green-light);}
+.detail-tag.red{background:rgba(192,18,12,.18);color:#ff7070;}
+.detail-title{
+  font-family:'Amiri',serif;
+  font-size:1.6rem;font-weight:700;
+  line-height:1.3;margin-bottom:14px;color:white;
+}
+body.ltr .detail-title{font-family:'Playfair Display',serif;}
+.detail-date{
+  display:flex;align-items:center;gap:6px;
+  font-size:.78rem;color:var(--green-light);
+  margin-bottom:16px;font-weight:600;
+}
+.detail-text{
+  font-size:.95rem;line-height:1.85;
+  color:rgba(255,255,255,.72);
+  white-space:pre-wrap;
+}
+/* card clickable */
+.card{cursor:pointer;}
+.card-body{position:relative;}
+
+/* ── NO-DB BANNER ── */
+.no-db-banner{
+  background:linear-gradient(135deg,#1a0d00,#3a1f00);
+  border:1.5px solid #c8942a;
+  border-radius:10px;
+  padding:14px 18px;
+  margin:18px 30px 0;
+  display:flex;align-items:center;gap:13px;
+  max-width:1200px;margin-inline:auto;
+  margin-top:18px;
+}
+.no-db-banner .nb-icon{font-size:1.4rem;flex-shrink:0;}
+.no-db-banner .nb-text{font-size:.82rem;line-height:1.6;color:#f0bc2e;}
+.no-db-banner .nb-text strong{color:white;}
+.no-db-banner .nb-close{
+  margin-inline-start:auto;background:none;border:none;
+  color:rgba(255,255,255,.4);cursor:pointer;font-size:1rem;flex-shrink:0;
+  transition:color .2s;
+}
+.no-db-banner .nb-close:hover{color:white;}
 
 /* ════════════════════════════════════
    CONTACT
@@ -932,6 +1068,41 @@ body.rtl @keyframes slideIn{from{transform:translateX(-100%)}to{transform:transl
 </footer>
 
 <!-- ════════════════════════════════════
+     NO-DB WARNING BANNER
+════════════════════════════════════ -->
+<div id="noDbBanner" class="no-db-banner" style="display:none;">
+  <span class="nb-icon">⚠️</span>
+  <span class="nb-text">
+    <strong class="ar">تحذير: الموقع يعمل بدون قاعدة بيانات!</strong>
+    <strong class="it" style="display:none">Attenzione: sito senza database!</strong>
+    <br>
+    <span class="ar">المنشورات مرئية في هذا المتصفح فقط. أضف مفاتيح Supabase في index.html لتظهر للجميع.</span>
+    <span class="it" style="display:none">I post sono visibili solo in questo browser. Aggiungi le chiavi Supabase in index.html per renderli visibili a tutti.</span>
+  </span>
+  <button class="nb-close" onclick="this.parentElement.style.display='none'">✕</button>
+</div>
+
+<!-- ════════════════════════════════════
+     DETAIL MODAL (click to zoom post/event)
+════════════════════════════════════ -->
+<div class="detail-overlay" id="detailOverlay" onclick="if(event.target===this)closeDetail()">
+  <div class="detail-box" id="detailBox">
+    <button class="detail-close" onclick="closeDetail()">✕</button>
+    <div id="detailImgArea"></div>
+    <div class="detail-body">
+      <div id="detailTag"></div>
+      <div class="detail-title ar" id="detailTitleAr"></div>
+      <div class="detail-title it" id="detailTitleIt" style="display:none"></div>
+      <div class="detail-date" id="detailDate" style="display:none">
+        <span>📅</span><span id="detailDateText"></span>
+      </div>
+      <div class="detail-text ar" id="detailTextAr"></div>
+      <div class="detail-text it" id="detailTextIt" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
      ADMIN PANEL
 ════════════════════════════════════ -->
 <div class="admin-panel" id="adminPanel" onclick="if(event.target===this)closeAdmin()">
@@ -1334,6 +1505,12 @@ async function initData(){
     var [dbPosts, dbEvents] = await Promise.all([dbLoad('posts'), dbLoad('events')]);
     if(dbPosts)  { posts  = dbPosts;  localStorage.setItem('gxb_posts',  JSON.stringify(posts));  }
     if(dbEvents) { events = dbEvents; localStorage.setItem('gxb_events', JSON.stringify(events)); }
+    // hide banner — supabase is connected
+    document.getElementById('noDbBanner').style.display = 'none';
+  } else {
+    // show warning banner — data is local only
+    document.getElementById('noDbBanner').style.display = 'flex';
+    applyLang();
   }
   renderPosts(); renderEvents();
   showLoading(false);
@@ -1542,8 +1719,8 @@ function galleryHtml(photos, fallbackEmoji, uid){
     +'<img src="'+arr[0]+'" loading="lazy" onerror="this.src=\'\'" id="gal-img-'+uid+'">'
     +'<div class="card-img-overlay"></div>'
     +'<div class="card-gallery-count">📷 <span id="gal-n-'+uid+'">1</span>/'+arr.length+'</div>'
-    +'<button class="card-gallery-nav card-gallery-prev" onclick="galNav(\''+uid+'\','+JSON.stringify(arr)+',-1)">‹</button>'
-    +'<button class="card-gallery-nav card-gallery-next" onclick="galNav(\''+uid+'\','+JSON.stringify(arr)+',1)">›</button>'
+    +'<button class="card-gallery-nav card-gallery-prev" onclick="event.stopPropagation();galNav(\''+uid+'\','+JSON.stringify(arr)+',-1)">‹</button>'
+    +'<button class="card-gallery-nav card-gallery-next" onclick="event.stopPropagation();galNav(\''+uid+'\','+JSON.stringify(arr)+',1)">›</button>'
     +'</div>';
 }
 var galIdx = {};
@@ -1559,10 +1736,12 @@ function galNav(uid, arr, dir){
 /* ═══ ADMIN BUTTONS ═══ */
 function adminBtns(id, type){
   if(!isLoggedIn) return '';
-  return '<div class="card-admin-btns">'
-    +'<button class="btn-edit" onclick="'+(type==='post'?'openEditPost':'openEditEvent')+'(\''+id+'\')">'
+  var editFn  = type==='post' ? 'openEditPost'  : 'openEditEvent';
+  var delFn   = type==='post' ? 'delPost'        : 'delEvent';
+  return '<div class="card-admin-btns" onclick="event.stopPropagation()">'
+    +'<button class="btn-edit" onclick="'+editFn+'(\''+id+'\')">'
     +'<span class="ar">✏ تعديل</span><span class="it" style="display:none">✏ Modifica</span></button>'
-    +'<button class="btn-delete" onclick="'+(type==='post'?'delPost':'delEvent')+'(\''+id+'\')">'
+    +'<button class="btn-delete" onclick="'+delFn+'(\''+id+'\')">'
     +'<span class="ar">🗑 حذف</span><span class="it" style="display:none">🗑 Elimina</span></button>'
     +'</div>';
 }
@@ -1582,7 +1761,7 @@ function renderPosts(){
     var date = p.date_display||p.date||'';
     var photos = p.photos || (p.img ? [p.img] : []);
     var uid = 'p'+i+'_'+(p.id||i);
-    return '<div class="card" style="animation-delay:'+i*.06+'s">'
+    return '<div class="card" style="animation-delay:'+i*.06+'s" onclick="openDetail(\'post\',\''+p.id+'\')">'
       +galleryHtml(photos,'📰',uid)
       +'<div class="card-body">'
       +'<span class="card-tag green ar">📰 خبر</span><span class="card-tag green it" style="display:none">📰 Notizia</span>'
@@ -1610,7 +1789,7 @@ function renderEvents(){
     var dateStr = ev.date_str||ev.dateStr||ev.event_date||ev.date||'';
     var photos = ev.photos || (ev.img ? [ev.img] : []);
     var uid = 'e'+i+'_'+(ev.id||i);
-    return '<div class="card" style="animation-delay:'+i*.06+'s">'
+    return '<div class="card" style="animation-delay:'+i*.06+'s" onclick="openDetail(\'event\',\''+ev.id+'\')">'
       +galleryHtml(photos,'📅',uid)
       +'<div class="card-body">'
       +'<span class="card-tag red ar">📅 فعالية</span><span class="card-tag red it" style="display:none">📅 Evento</span>'
@@ -1622,6 +1801,111 @@ function renderEvents(){
   }).join('');
   applyLang();
 }
+
+/* ═══════════════════════════════════
+   DETAIL MODAL
+═══════════════════════════════════ */
+var _detailSliderIdx = 0;
+var _detailPhotos = [];
+
+function openDetail(type, id){
+  var item = type === 'post'
+    ? posts.find(x => x.id == id)
+    : events.find(x => x.id == id);
+  if(!item) return;
+
+  var photos = item.photos || (item.img ? [item.img] : []);
+  var tAr = item.title_ar || item.titleAr || '';
+  var tIt = item.title_it || item.titleIt || '';
+  var xAr = item.text_ar  || item.textAr  || '';
+  var xIt = item.text_it  || item.textIt  || '';
+  var dateStr = item.date_str || item.dateStr || item.event_date || item.date_display || item.date || '';
+
+  _detailPhotos = photos;
+  _detailSliderIdx = 0;
+
+  // tag
+  var tagEl = document.getElementById('detailTag');
+  if(type === 'post'){
+    tagEl.innerHTML = '<span class="detail-tag green ar">📰 خبر</span><span class="detail-tag green it" style="display:none">📰 Notizia</span>';
+  } else {
+    tagEl.innerHTML = '<span class="detail-tag red ar">📅 فعالية</span><span class="detail-tag red it" style="display:none">📅 Evento</span>';
+  }
+
+  // titles & text
+  document.getElementById('detailTitleAr').textContent = tAr;
+  document.getElementById('detailTitleIt').textContent = tIt;
+  document.getElementById('detailTextAr').textContent  = xAr;
+  document.getElementById('detailTextIt').textContent  = xIt;
+
+  // date
+  var dateWrap = document.getElementById('detailDate');
+  if(dateStr){ dateWrap.style.display='flex'; document.getElementById('detailDateText').textContent = dateStr; }
+  else { dateWrap.style.display='none'; }
+
+  // image area
+  var imgArea = document.getElementById('detailImgArea');
+  if(!photos.length){
+    imgArea.innerHTML = '<div class="detail-empty-img">'+(type==='post'?'📰':'📅')+'</div>';
+  } else if(photos.length === 1){
+    imgArea.innerHTML = '<div class="detail-slider"><div class="detail-slide"><img src="'+photos[0]+'" alt=""></div></div>';
+  } else {
+    var slides = photos.map(function(src){
+      return '<div class="detail-slide"><img src="'+src+'" alt="" loading="lazy"></div>';
+    }).join('');
+    var dots = photos.map(function(_,i){
+      return '<button class="detail-dot'+(i===0?' active':'')+'" onclick="detailGoTo('+i+')" aria-label="'+i+'"></button>';
+    }).join('');
+    imgArea.innerHTML =
+      '<div class="detail-slider" id="detailSlider">'
+        +'<div class="detail-slider-track" id="detailTrack">'+slides+'</div>'
+        +'<button class="detail-nav detail-nav-prev" onclick="detailNav(-1)">‹</button>'
+        +'<button class="detail-nav detail-nav-next" onclick="detailNav(1)">›</button>'
+      +'</div>'
+      +'<div class="detail-dots" id="detailDots">'+dots+'</div>';
+
+    // touch/swipe support
+    var slider = document.getElementById('detailSlider');
+    var startX = 0;
+    slider.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+    slider.addEventListener('touchend', function(e){
+      var diff = startX - e.changedTouches[0].clientX;
+      if(Math.abs(diff) > 40) detailNav(diff > 0 ? 1 : -1);
+    }, {passive:true});
+  }
+
+  document.getElementById('detailOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  applyLang();
+}
+
+function detailNav(dir){
+  if(!_detailPhotos.length) return;
+  _detailSliderIdx = (_detailSliderIdx + dir + _detailPhotos.length) % _detailPhotos.length;
+  detailGoTo(_detailSliderIdx);
+}
+
+function detailGoTo(idx){
+  _detailSliderIdx = idx;
+  var track = document.getElementById('detailTrack');
+  if(track) track.style.transform = 'translateX('+(isRTL ? '' : '-')+idx*100+'%)';
+  // update dots
+  var dots = document.querySelectorAll('.detail-dot');
+  dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+}
+
+function closeDetail(){
+  document.getElementById('detailOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// keyboard support
+document.addEventListener('keydown', function(e){
+  if(!document.getElementById('detailOverlay').classList.contains('open')) return;
+  if(e.key === 'Escape') closeDetail();
+  if(e.key === 'ArrowLeft')  detailNav(isRTL ? 1 : -1);
+  if(e.key === 'ArrowRight') detailNav(isRTL ? -1 : 1);
+});
 
 /* ═══ BOOT ═══ */
 initData();
