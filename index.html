@@ -4,14 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Giovani X il Bene | مؤسسة شباب X الخير</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@400;700;900&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
 
-     <!-- ── FAVICON & APP ICON ── -->
+<!-- ── FAVICON & APP ICON ── -->
 <link rel="icon" type="image/png" href="Logo-1.png">
 <link rel="shortcut icon" type="image/png" href="Logo-1.png">
 <link rel="apple-touch-icon" href="Logo-1.png">
 <meta name="theme-color" content="#1a6b1e">
- 
+
+<!-- ── SEO & SOCIAL ── -->
+<meta name="description" content="مؤسسة شباب X الخير — Giovani X il Bene | Comunità Islamica, San Donato Milanese">
+<meta property="og:title" content="Giovani X il Bene | مؤسسة شباب X الخير">
+<meta property="og:description" content="مبادرة إسلامية تجمع أبناء المجتمع المسلم في إيطاليا — تعليم القرآن والعربية، مجتمع إسلامي في سان دوناتو ميلانيزي">
+<meta property="og:image" content="Logo-1.png">
+<meta property="og:type" content="website">
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@400;700;900&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+
 <!-- ═══════════════════════════════════
      SUPABASE — paste your URL & key below
      after following SETUP_GUIDE.md
@@ -24,8 +32,9 @@
 
   const _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   window._sb = _sb;
-  window.SUPABASE_READY = (SUPABASE_URL !== 'https://apahqiiaqbqyjhygzvpu.supabase.co/rest/v1/');
+  window.SUPABASE_READY = (SUPABASE_URL !== 'https://apahqiiaqbqyjhygzvpu.supabase.co');
 </script>
+
 
 <style>
 /* ═══════════ LOGO COLOR PALETTE ═══════════
@@ -840,6 +849,56 @@ body.rtl @keyframes slideIn{from{transform:translateX(-100%)}to{transform:transl
   .edit-box{padding:20px 16px;}
   .about-stat-row{gap:10px;}
 }
+
+/* ════════════════════════════════════
+   YOUTUBE SECTION
+════════════════════════════════════ */
+.youtube-section{
+  background:linear-gradient(160deg,var(--black) 0%,#0e1a10 60%,#0d1a0d 100%);
+  padding:60px 30px;
+  position:relative;overflow:hidden;
+}
+.youtube-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(192,18,12,.12),transparent);
+  pointer-events:none;
+}
+.youtube-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;}
+.youtube-header{text-align:center;margin-bottom:28px;}
+.youtube-header .yt-icon{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;background:#ff0000;border-radius:14px;font-size:1.6rem;margin-bottom:14px;box-shadow:0 4px 20px rgba(255,0,0,.4);}
+.youtube-header h2{font-family:'Amiri',serif;font-size:1.9rem;color:white;margin-bottom:8px;}
+body.ltr .youtube-header h2{font-family:'Playfair Display',serif;}
+.youtube-header p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.7;}
+.youtube-embed-wrap{border-radius:16px;overflow:hidden;border:2px solid rgba(255,0,0,.3);box-shadow:0 8px 40px rgba(0,0,0,.6);position:relative;padding-bottom:56.25%;height:0;}
+.youtube-embed-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.youtube-btn{display:inline-flex;align-items:center;gap:10px;background:#ff0000;color:white;padding:13px 28px;border-radius:10px;font-weight:700;font-size:.92rem;text-decoration:none;margin-top:20px;transition:all .25s;box-shadow:0 4px 20px rgba(255,0,0,.4);border:none;cursor:pointer;font-family:inherit;}
+.youtube-btn:hover{background:#cc0000;transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,0,0,.5);}
+.youtube-btn-wrap{text-align:center;}
+
+/* ════════════════════════════════════
+   TEACHING SECTION
+════════════════════════════════════ */
+.teaching-section{background:var(--cream-dark);padding:60px 30px;}
+.teaching-inner{max-width:1100px;margin:0 auto;}
+.teaching-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:32px;}
+.teaching-card{background:white;border-radius:14px;padding:28px 26px;border:1px solid var(--border);box-shadow:var(--shadow-g);transition:all .25s;position:relative;overflow:hidden;}
+.teaching-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--green),var(--green-light));}
+.teaching-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(26,107,30,.2);}
+.teaching-card .tc-icon{font-size:2.2rem;margin-bottom:14px;display:block;}
+.teaching-card h3{font-family:'Amiri',serif;font-size:1.35rem;color:var(--black);margin-bottom:10px;font-weight:700;}
+body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
+.teaching-card p{font-size:.88rem;color:var(--gray);line-height:1.75;}
+.teaching-note{margin-top:30px;background:linear-gradient(135deg,var(--black-card),#0a2010);border-radius:14px;padding:26px 30px;color:white;border:1.5px solid rgba(26,107,30,.35);display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.teaching-note-icon{font-size:2rem;flex-shrink:0;}
+.teaching-note-text{flex:1;min-width:200px;}
+.teaching-note-text p{font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:12px;}
+.teaching-note-text strong{color:white;}
+.teaching-note-links{display:flex;gap:10px;flex-wrap:wrap;}
+.teaching-contact-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:8px;font-size:.83rem;font-weight:700;text-decoration:none;transition:all .2s;}
+.teaching-contact-btn.green{background:var(--green);color:white;box-shadow:0 3px 12px rgba(26,107,30,.4);}
+.teaching-contact-btn.green:hover{background:var(--green-mid);transform:translateY(-1px);}
+.teaching-contact-btn.outline{background:transparent;color:rgba(255,255,255,.7);border:1.5px solid rgba(255,255,255,.2);}
+.teaching-contact-btn.outline:hover{background:rgba(255,255,255,.1);color:white;}
 </style>
 </head>
 <body class="rtl" id="body">
@@ -867,6 +926,7 @@ body.rtl @keyframes slideIn{from{transform:translateX(-100%)}to{transform:transl
       <a onclick="goto('home')"><span class="ar">الرئيسية</span><span class="it" style="display:none">Home</span></a>
       <a onclick="goto('newsSection')"><span class="ar">الأخبار</span><span class="it" style="display:none">Notizie</span></a>
       <a onclick="goto('eventsSection')"><span class="ar">الفعاليات</span><span class="it" style="display:none">Eventi</span></a>
+      <a onclick="goto('teachingSection')"><span class="ar">التعليم</span><span class="it" style="display:none">Insegnamento</span></a>
       <a onclick="goto('aboutSection')"><span class="ar">عن المؤسسة</span><span class="it" style="display:none">Chi siamo</span></a>
       <a onclick="goto('contactSection')"><span class="ar">تواصل</span><span class="it" style="display:none">Contatti</span></a>
       <button class="lang-toggle" onclick="toggleLang()" id="langBtn">IT</button>
@@ -889,8 +949,8 @@ body.rtl @keyframes slideIn{from{transform:translateX(-100%)}to{transform:transl
     <span class="it" style="display:none">Giovani <em>X</em> il Bene</span>
   </h1>
   <p>
-    <span class="ar">مبادرة إسلامية تجمع أبناء المجتمع المسلم في إيطاليا على قيم الخير والعطاء والتطوع — نبني معاً مجتمعاً أفضل</span>
-    <span class="it" style="display:none">Un'iniziativa islamica che unisce la comunità musulmana in Italia sui valori del bene, della generosità e del volontariato — costruiamo insieme una società migliore</span>
+    <span class="ar">مبادرة إسلامية تجمع أبناء المجتمع المسلم في إيطاليا على قيم الخير والعطاء — نتعلم ونُعلّم ونبني معاً مجتمعاً متماسكاً</span>
+    <span class="it" style="display:none">Un'iniziativa islamica che unisce la comunità musulmana in Italia — impariamo, insegniamo e costruiamo insieme una comunità coesa</span>
   </p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;">
     <a class="hero-cta" onclick="goto('newsSection')">
@@ -992,18 +1052,18 @@ body.rtl @keyframes slideIn{from{transform:translateX(-100%)}to{transform:transl
     <div class="about-text-side">
       <h2 class="ar">من نحن؟</h2>
       <h2 class="it" style="display:none">Chi siamo?</h2>
-      <p class="ar"><strong>مؤسسة شباب X الخير</strong> هي مبادرة إسلامية شبابية تجمع أبناء المجتمع المسلم في إيطاليا من مختلف الأصول والثقافات على قيم مشتركة: التطوع، التعاون، والعطاء.</p>
-      <p class="it" style="display:none"><strong>Giovani X il Bene</strong> è un'iniziativa islamica giovanile che riunisce i membri della comunità musulmana in Italia, di diverse origini e culture, attorno a valori comuni: volontariato, cooperazione e generosità.</p>
-      <p class="ar">نعمل في قلب مدينة سان دوناتو ميلانيزي لخدمة جميع أبناء المجتمع الإسلامي وتعزيز روح التعاون والتضامن بين الجميع.</p>
-      <p class="it" style="display:none">Operiamo nel cuore di San Donato Milanese al servizio di tutta la comunità islamica, promuovendo lo spirito di cooperazione e solidarietà tra tutti.</p>
+      <p class="ar"><strong>مؤسسة شباب X الخير</strong> هي مبادرة إسلامية شبابية تجمع أبناء المجتمع المسلم في إيطاليا من مختلف الأصول والثقافات على قيم مشتركة: التعليم، التعاون، والعطاء.</p>
+      <p class="it" style="display:none"><strong>Giovani X il Bene</strong> è un'iniziativa islamica giovanile che riunisce i membri della comunità musulmana in Italia, di diverse origini e culture, attorno a valori comuni: istruzione, cooperazione e generosità.</p>
+      <p class="ar">نعمل في قلب مدينة سان دوناتو ميلانيزي لخدمة جميع أبناء المجتمع الإسلامي — نُقدّم دروس اللغة العربية وتعليم القرآن الكريم لجميع الأعمار.</p>
+      <p class="it" style="display:none">Operiamo nel cuore di San Donato Milanese al servizio di tutta la comunità islamica — offriamo lezioni di lingua araba e insegnamento del Corano per tutte le età.</p>
       <div class="about-stat-row">
         <div class="about-stat">
           <span class="num">🇮🇹</span>
           <span class="lbl ar">إيطاليا</span><span class="lbl it" style="display:none">Italia</span>
         </div>
         <div class="about-stat">
-          <span class="num">🤝</span>
-          <span class="lbl ar">تطوع</span><span class="lbl it" style="display:none">Volontariato</span>
+          <span class="num">📖</span>
+          <span class="lbl ar">تعليم القرآن</span><span class="lbl it" style="display:none">Corano</span>
         </div>
         <div class="about-stat">
           <span class="num">🕌</span>
@@ -1031,6 +1091,93 @@ body.rtl @keyframes slideIn{from{transform:translateX(-100%)}to{transform:transl
 </div>
 
 <!-- ════════════════════════════════════
+     YOUTUBE — QURAN LIVE
+════════════════════════════════════ -->
+<hr class="divider">
+<div class="youtube-section" id="youtubeSection">
+  <div class="youtube-inner">
+    <div class="youtube-header">
+      <div class="yt-icon">▶</div>
+      <h2 class="ar">📡 القرآن الكريم — بث مباشر 24/7</h2>
+      <h2 class="it" style="display:none">📡 Corano — Diretta 24/7</h2>
+      <p class="ar">استمع إلى تلاوة القرآن الكريم على مدار الساعة</p>
+      <p class="it" style="display:none">Ascolta la recitazione del Corano 24 ore su 24</p>
+    </div>
+    <div class="youtube-embed-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/6kQeyYwxnhA?autoplay=0&rel=0&modestbranding=1"
+        title="Quran Live 24/7"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="youtube-btn-wrap">
+      <a class="youtube-btn" href="https://www.youtube.com/watch?v=6kQeyYwxnhA" target="_blank" rel="noopener">
+        ▶ <span class="ar">فتح على يوتيوب</span><span class="it" style="display:none">Apri su YouTube</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     TEACHING SECTION
+════════════════════════════════════ -->
+<hr class="divider">
+<div class="teaching-section" id="teachingSection">
+  <div class="teaching-inner">
+    <div class="section-title-wrap">
+      <div class="section-pretitle ar">📚 تعلّم معنا</div>
+      <div class="section-pretitle it" style="display:none">📚 Studia con noi</div>
+      <div class="section-title ar"><span>التعليم</span> والتعلم</div>
+      <div class="section-title it" style="display:none"><span>Insegnamento</span> e Apprendimento</div>
+      <div class="section-line"></div>
+      <div class="section-sub ar">نقدّم دروساً متخصصة في اللغة العربية والقرآن الكريم لجميع الأعمار والمستويات</div>
+      <div class="section-sub it" style="display:none">Offriamo lezioni specializzate in lingua araba e Corano per tutte le età e livelli</div>
+    </div>
+    <div class="teaching-cards">
+      <div class="teaching-card">
+        <span class="tc-icon">📖</span>
+        <h3 class="ar">تعليم القرآن الكريم</h3>
+        <h3 class="it" style="display:none">Insegnamento del Corano</h3>
+        <p class="ar">دروس متخصصة لحفظ وتجويد القرآن الكريم — للأطفال والكبار — مع معلمين متأهلين وبأسلوب سهل وممتع.</p>
+        <p class="it" style="display:none">Lezioni specializzate per la memorizzazione e la recitazione del Corano — per bambini e adulti — con insegnanti qualificati.</p>
+      </div>
+      <div class="teaching-card">
+        <span class="tc-icon">🔤</span>
+        <h3 class="ar">اللغة العربية</h3>
+        <h3 class="it" style="display:none">Lingua Araba</h3>
+        <p class="ar">تعلّم اللغة العربية من الصفر حتى الاحتراف — قراءةً وكتابةً ومحادثةً — في بيئة ودية ومحفّزة.</p>
+        <p class="it" style="display:none">Impara l'arabo da zero fino all'avanzato — lettura, scrittura e conversazione — in un ambiente amichevole e stimolante.</p>
+      </div>
+      <div class="teaching-card">
+        <span class="tc-icon">👶</span>
+        <h3 class="ar">برامج الأطفال</h3>
+        <h3 class="it" style="display:none">Programmi per Bambini</h3>
+        <p class="ar">فصول خاصة بالأطفال تجمع بين التعليم والترفيه — نبني جيلاً واعياً بهويته الإسلامية وأصوله العربية.</p>
+        <p class="it" style="display:none">Classi speciali per bambini che uniscono istruzione e divertimento — costruiamo una generazione consapevole della propria identità.</p>
+      </div>
+    </div>
+
+    <!-- Contact note -->
+    <div class="teaching-note">
+      <div class="teaching-note-icon">📩</div>
+      <div class="teaching-note-text">
+        <p class="ar"><strong>للتسجيل أو للاستفسار عن المواعيد والرسوم</strong> — تواصل معنا مباشرةً عبر البريد الإلكتروني أو الهاتف وسنردّ عليك في أقرب وقت.</p>
+        <p class="it" style="display:none"><strong>Per iscriversi o per informazioni su orari e tariffe</strong> — contattaci direttamente via email o telefono e ti risponderemo al più presto.</p>
+        <div class="teaching-note-links">
+          <a class="teaching-contact-btn green" href="mailto:giovanixbene@gmail.com">
+            ✉ giovanixbene@gmail.com
+          </a>
+          <a class="teaching-contact-btn outline" href="tel:+393664539321">
+            📞 +39 366 453 9321
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
      CONTACT
 ════════════════════════════════════ -->
 <div class="contact-section" id="contactSection">
@@ -1038,8 +1185,8 @@ body.rtl @keyframes slideIn{from{transform:translateX(-100%)}to{transform:transl
     <img src="Logo-1.png" alt="" style="width:80px;height:80px;object-fit:contain;margin:0 auto 16px;display:block;filter:drop-shadow(0 4px 14px rgba(26,107,30,.5));" onerror="this.style.display='none'">
     <h2 class="ar">تواصل معنا</h2>
     <h2 class="it" style="display:none">Contattaci</h2>
-    <p class="ar">نحن هنا للإجابة على استفساراتك والترحيب بكل متطوع جديد من المجتمع الإسلامي وخارجه</p>
-    <p class="it" style="display:none">Siamo qui per rispondere alle tue domande e accogliere ogni nuovo volontario dalla comunità islamica e non solo</p>
+    <p class="ar">نحن هنا للإجابة على استفساراتك — للتسجيل في دروس العربية والقرآن أو لأي استفسار آخر تواصل معنا</p>
+    <p class="it" style="display:none">Siamo qui per rispondere alle tue domande — per iscriversi alle lezioni di arabo e Corano o per qualsiasi altra richiesta contattaci</p>
     <div class="contact-grid">
       <a class="contact-card" href="https://www.facebook.com/GiovaniXilBene" target="_blank">
         <span class="cc-icon">📘</span>
@@ -1575,7 +1722,7 @@ function delPost(id){
 
 /* ═══ OPEN EDIT POST ═══ */
 function openEditPost(id){
-  var p = posts.find(x => x.id === id || x.id == id); if(!p) return;
+  var p = posts.find(x => String(x.id) === String(id)); if(!p) return;
   document.getElementById('editId').value    = id;
   document.getElementById('editType').value  = 'post';
   document.getElementById('editTypeLabel').textContent = isRTL ? 'خبر' : 'Notizia';
@@ -1648,7 +1795,7 @@ function delEvent(id){
 
 /* ═══ OPEN EDIT EVENT ═══ */
 function openEditEvent(id){
-  var ev = events.find(x => x.id === id || x.id == id); if(!ev) return;
+  var ev = events.find(x => String(x.id) === String(id)); if(!ev) return;
   document.getElementById('editId').value    = id;
   document.getElementById('editType').value  = 'event';
   document.getElementById('editTypeLabel').textContent = isRTL ? 'فعالية' : 'Evento';
@@ -1678,11 +1825,12 @@ async function saveEdit(){
   if(!tAr && !tIt){ showToast(isRTL ? '⚠ العنوان مطلوب' : '⚠ Titolo obbligatorio', 'error'); return; }
 
   showLoading(true);
+  closeEditModal();
 
   if(type === 'post'){
     var updates = { title_ar:tAr||tIt, title_it:tIt||tAr, text_ar:xAr||xIt, text_it:xIt||xAr, photos:photos, img:photos[0]||'' };
     if(window.SUPABASE_READY) await dbUpdate('posts', id, updates);
-    var idx = posts.findIndex(p => p.id==id);
+    var idx = posts.findIndex(p => String(p.id) === String(id));
     if(idx >= 0) posts[idx] = Object.assign({}, posts[idx], updates);
     localStorage.setItem('gxb_posts', JSON.stringify(posts));
     renderPosts();
@@ -1692,13 +1840,12 @@ async function saveEdit(){
     if(date){ var d=new Date(date+'T12:00:00'); dateStr=d.toLocaleDateString('ar-EG',{year:'numeric',month:'long',day:'numeric'}); }
     var updates = { title_ar:tAr||tIt, title_it:tIt||tAr, text_ar:xAr||xIt, text_it:xIt||xAr, photos:photos, img:photos[0]||'', event_date:date||null, date_str:dateStr };
     if(window.SUPABASE_READY) await dbUpdate('events', id, updates);
-    var idx = events.findIndex(e => e.id==id);
+    var idx = events.findIndex(e => String(e.id) === String(id));
     if(idx >= 0) events[idx] = Object.assign({}, events[idx], updates);
     localStorage.setItem('gxb_events', JSON.stringify(events));
     renderEvents();
   }
 
-  closeEditModal();
   showLoading(false);
   showToast(isRTL ? '✅ تم حفظ التعديلات' : '✅ Modifiche salvate');
 }
@@ -1816,8 +1963,8 @@ var _detailPhotos = [];
 
 function openDetail(type, id){
   var item = type === 'post'
-    ? posts.find(x => x.id == id)
-    : events.find(x => x.id == id);
+    ? posts.find(x => String(x.id) === String(id))
+    : events.find(x => String(x.id) === String(id));
   if(!item) return;
 
   var photos = item.photos || (item.img ? [item.img] : []);
