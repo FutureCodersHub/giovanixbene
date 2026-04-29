@@ -20,11 +20,16 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@400;700;900&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
 
-<!-- ═══════════════════════════════════
-     SUPABASE — paste your URL & key below
-     after following SETUP_GUIDE.md
-════════════════════════════════════ -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // ✅ REPLACE these two values with yours from Supabase dashboard
+  const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+  const _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  window._sb = _sb;
+  window.SUPABASE_READY = (SUPABASE_URL !== 'YOUR_SUPABASE_URL');
+</script>
 <script>
   // ✅ REPLACE these two values with yours from Supabase dashboard
   const SUPABASE_URL = 'https://apahqiiaqbqyjhygzvpu.supabase.co';
@@ -35,15 +40,7 @@
   window.SUPABASE_READY = (SUPABASE_URL !== 'YOUR_SUPABASE_URL');</script>
 
 <style>
-/* ═══════════ LOGO COLOR PALETTE ═══════════
-   Forest Green  : #1a6b1e  (dominant)
-   Bright Green  : #28a745
-   Crimson Red   : #c0120c
-   Pure White    : #ffffff
-   Jet Black     : #0a0a0a
-   Warm Cream    : #f5f0e8
-   Gold Accent   : #d4a017
-   ══════════════════════════════════════ */
+
 :root {
   --green:       #1a6b1e;
   --green-mid:   #228b22;
@@ -74,7 +71,6 @@ body.ltr .it{display:block!important;}
 body.rtl .it{display:none!important;}
 body.rtl .ar{display:block!important;}
 
-/* ── NOISE TEXTURE OVERLAY ── */
 body::before{
   content:'';
   position:fixed;
@@ -85,9 +81,7 @@ body::before{
   opacity:.4;
 }
 
-/* ════════════════════════════════════
-   HEADER
-════════════════════════════════════ */
+
 header{
   background:linear-gradient(135deg, var(--black) 0%, var(--black-soft) 40%, #142b15 100%);
   color:white;
@@ -132,9 +126,7 @@ nav a:hover{color:white;background:rgba(26,107,30,.3);border-color:rgba(26,107,3
 }
 .admin-btn:hover{background:rgba(26,107,30,.3);border-color:var(--green);color:white;}
 
-/* ════════════════════════════════════
-   HERO
-════════════════════════════════════ */
+
 .hero{
   background:linear-gradient(160deg, var(--black) 0%, #0d1f0e 45%, #162d17 100%);
   color:white;
@@ -148,7 +140,6 @@ nav a:hover{color:white;background:rgba(26,107,30,.3);border-color:rgba(26,107,3
     radial-gradient(ellipse 70% 60% at 50% 100%, rgba(26,107,30,.35) 0%, transparent 70%),
     radial-gradient(ellipse 40% 40% at 20% 10%, rgba(192,18,12,.1) 0%, transparent 60%);
 }
-/* Decorative diagonal stripes */
 .hero::after{
   content:'';position:absolute;inset:0;
   background:repeating-linear-gradient(
@@ -220,9 +211,7 @@ body.ltr .hero h1{font-family:'Playfair Display',serif;}
 }
 .hero-cta-alt:hover{background:rgba(192,18,12,.2);border-color:var(--red);color:white;}
 
-/* ════════════════════════════════════
-   INFO STRIP
-════════════════════════════════════ */
+
 .info-strip{
   background:linear-gradient(135deg, var(--black-soft), var(--black-card));
   color:white;padding:26px 24px;
@@ -244,9 +233,7 @@ body.ltr .hero h1{font-family:'Playfair Display',serif;}
 .info-text a{color:var(--gold-light);text-decoration:none;transition:color .2s;}
 .info-text a:hover{color:white;}
 
-/* ════════════════════════════════════
-   SECTIONS
-════════════════════════════════════ */
+
 .section{padding:68px 30px;max-width:1200px;margin:0 auto;}
 .section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:14px;}
 .section-title-wrap{}
@@ -262,9 +249,7 @@ body.ltr .section-title{font-family:'Playfair Display',serif;}
 .section-line{width:44px;height:3px;margin-top:9px;background:linear-gradient(90deg,var(--green),var(--red));border-radius:3px;}
 .section-sub{color:var(--gray);margin-top:6px;font-size:.88rem;}
 
-/* ════════════════════════════════════
-   CARDS
-════════════════════════════════════ */
+
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:26px;}
 .card{
   background:white;
@@ -329,9 +314,7 @@ body.ltr .section-title{font-family:'Playfair Display',serif;}
 }
 .btn-delete:hover{background:rgba(192,18,12,.07);border-color:var(--red);}
 
-/* ════════════════════════════════════
-   ABOUT
-════════════════════════════════════ */
+
 .about-wrap{
   background:linear-gradient(135deg,var(--black),var(--black-card));
   border-radius:16px;
@@ -382,15 +365,12 @@ body.ltr .about-text-side h2{font-family:'Playfair Display',serif;}
 .about-stat .num{font-size:1.6rem;font-weight:900;color:var(--green-light);display:block;}
 .about-stat .lbl{font-size:.68rem;opacity:.55;text-transform:uppercase;letter-spacing:.8px;}
 
-/* ════════════════════════════════════
-   MAP
-════════════════════════════════════ */
+
 .map-section{background:var(--cream-dark);padding:50px 30px;}
 .map-inner{max-width:1200px;margin:0 auto;}
 
 .map-wrap{border-radius:12px;overflow:hidden;box-shadow:var(--shadow-g);border:2px solid var(--green);}
 .map-wrap iframe{display:block;width:100%;height:320px;border:none;}
-/* photo upload */
 .photo-upload-area{
   border:2px dashed rgba(255,255,255,.18);
   border-radius:10px;padding:16px;
@@ -425,7 +405,6 @@ body.ltr .about-text-side h2{font-family:'Playfair Display',serif;}
   cursor:pointer;display:flex;align-items:center;justify-content:center;
   line-height:1;
 }
-/* card image gallery */
 .card-gallery{width:100%;height:195px;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--black-card),var(--green));}
 .card-gallery img{width:100%;height:100%;object-fit:cover;display:block;}
 .card-gallery-count{
@@ -873,6 +852,84 @@ body.ltr .youtube-header h2{font-family:'Playfair Display',serif;}
 .youtube-btn:hover{background:#cc0000;transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,0,0,.5);}
 .youtube-btn-wrap{text-align:center;}
 
+/* ── SADAQA JARIYA PLAQUE ── */
+.sadaqa-plaque{
+  margin-top:32px;
+  background:linear-gradient(160deg, #0a1a08 0%, #0f2210 50%, #0a1a08 100%);
+  border:1px solid rgba(212,160,23,.35);
+  border-radius:16px;
+  padding:28px 30px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;gap:18px;
+  box-shadow:0 0 0 1px rgba(212,160,23,.1), inset 0 0 60px rgba(212,160,23,.04);
+}
+.sadaqa-plaque::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(212,160,23,.07), transparent);
+  pointer-events:none;
+}
+.sadaqa-ornament{
+  font-size:1.6rem;color:var(--gold);opacity:.6;
+  flex-shrink:0;line-height:1;
+  text-shadow:0 0 12px rgba(212,160,23,.4);
+}
+.sadaqa-content{
+  position:relative;z-index:1;flex:1;
+}
+.sadaqa-label{
+  font-family:'Amiri',serif;
+  font-size:1.05rem;
+  color:var(--gold-light);
+  letter-spacing:6px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+  opacity:.7;
+}
+.sadaqa-text{
+  font-family:'Amiri',serif;
+  font-size:1rem;
+  color:rgba(255,255,255,.55);
+  margin-bottom:12px;
+}
+.sadaqa-divider-line{
+  width:60px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:0 auto 14px;
+}
+.sadaqa-souls{
+  display:flex;align-items:center;justify-content:center;
+  gap:8px;flex-wrap:wrap;
+  margin-bottom:12px;
+}
+.sadaqa-on{
+  font-family:'Amiri',serif;
+  font-size:1rem;color:rgba(255,255,255,.5);
+}
+.sadaqa-name{
+  font-family:'Amiri',serif;
+  font-size:1.45rem;font-weight:700;
+  color:var(--gold-light);
+  text-shadow:0 0 20px rgba(212,160,23,.3);
+}
+.sadaqa-and{
+  font-family:'Amiri',serif;
+  font-size:1rem;color:rgba(255,255,255,.4);
+}
+.sadaqa-dua{
+  font-family:'Amiri',serif;
+  font-size:.9rem;
+  color:var(--green-light);
+  opacity:.75;
+  font-style:italic;
+}
+@media(max-width:600px){
+  .sadaqa-plaque{flex-direction:column;gap:10px;padding:22px 18px;}
+  .sadaqa-ornament{font-size:1.2rem;}
+  .sadaqa-name{font-size:1.25rem;}
+}
+
 /* ════════════════════════════════════
    TEACHING SECTION
 ════════════════════════════════════ */
@@ -1114,6 +1171,30 @@ body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
         ▶ <span class="ar">فتح على يوتيوب</span><span class="it" style="display:none">Apri su YouTube</span>
       </a>
     </div>
+
+    <!-- SADAQA JARIYA DEDICATION -->
+    <div class="sadaqa-plaque">
+      <div class="sadaqa-ornament">☽</div>
+      <div class="sadaqa-content">
+        <p class="sadaqa-label">صـدقـة جـاريـة</p>
+        <p class="sadaqa-text">تلاوة القرآن الكريم هذه صدقةٌ جاريةٌ</p>
+        <div class="sadaqa-divider-line"></div>
+        <p class="sadaqa-souls">
+          <span class="sadaqa-on">على روح</span>
+          <span class="sadaqa-name">هنية إبراهيم</span>
+        </p>
+        <p class="sadaqa-souls" style="margin-bottom:6px;">
+          <span class="sadaqa-on" style="font-size:.95rem;">وعلى روح جميع أموات المسلمين</span>
+        </p>
+        <div class="sadaqa-divider-line"></div>
+        <p class="sadaqa-souls" style="margin-bottom:6px;">
+          <span class="sadaqa-on" style="font-size:.85rem;">مُهداةٌ من حفيدها</span>
+          <span class="sadaqa-name" style="font-size:1.2rem;">علي مجدي</span>
+        </p>
+        <p class="sadaqa-dua">رحمهم الله وأسكنهم فسيح جنّاته</p>
+      </div>
+      <div class="sadaqa-ornament">☽</div>
+    </div>
   </div>
 </div>
 
@@ -1146,13 +1227,6 @@ body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
         <h3 class="it" style="display:none">Lingua Araba</h3>
         <p class="ar">تعلّم اللغة العربية من الصفر حتى الاحتراف — قراءةً وكتابةً ومحادثةً — في بيئة ودية ومحفّزة.</p>
         <p class="it" style="display:none">Impara l'arabo da zero fino all'avanzato — lettura, scrittura e conversazione — in un ambiente amichevole e stimolante.</p>
-      </div>
-      <div class="teaching-card">
-        <span class="tc-icon">👶</span>
-        <h3 class="ar">برامج الأطفال</h3>
-        <h3 class="it" style="display:none">Programmi per Bambini</h3>
-        <p class="ar">فصول خاصة بالأطفال تجمع بين التعليم والترفيه — نبني جيلاً واعياً بهويته الإسلامية وأصوله العربية.</p>
-        <p class="it" style="display:none">Classi speciali per bambini che uniscono istruzione e divertimento — costruiamo una generazione consapevole della propria identità.</p>
       </div>
     </div>
 
@@ -1351,7 +1425,6 @@ body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
         </div>
       </div>
 
-      <!-- TAB SETTINGS -->
       <div class="tab-panel" id="tabSettings">
         <div class="admin-section">
           <h3><span class="ar">تغيير كلمة المرور</span><span class="it" style="display:none">Cambia Password</span></h3>
@@ -1414,9 +1487,7 @@ body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
   </div>
 </div>
 
-<!-- ════════════════════════════════════
-     CONFIRM DELETE DIALOG
-════════════════════════════════════ -->
+
 <div class="confirm-overlay" id="confirmOverlay">
   <div class="confirm-box">
     <span class="ci">🗑️</span>
@@ -1431,18 +1502,14 @@ body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
   </div>
 </div>
 
-<!-- ════════════════════════════════════
-     JAVASCRIPT
-════════════════════════════════════ -->
+
 <script>
-/* ═══ STATE ═══ */
 var isRTL = true;
 var isLoggedIn = false;
 var adminPassword = localStorage.getItem('gxb_pw') || null;
 var posts  = JSON.parse(localStorage.getItem('gxb_posts')  || '[]');
 var events = JSON.parse(localStorage.getItem('gxb_events') || '[]');
 
-/* ═══ UI HELPERS ═══ */
 function showLoading(on){
   document.getElementById('loadingBar').classList.toggle('active', on);
 }
@@ -1465,7 +1532,6 @@ function confirmDialog(msg, cb){
   };
 }
 
-/* ═══ LANGUAGE ═══ */
 function toggleLang(){
   isRTL = !isRTL;
   var b = document.getElementById('body');
@@ -1484,7 +1550,6 @@ function goto(id){
   if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-/* ═══ DB STATUS ═══ */
 function updateDbStatus(){
   var el = document.getElementById('dbStatus');
   var txt = document.getElementById('dbStatusText');
@@ -1497,7 +1562,6 @@ function updateDbStatus(){
   }
 }
 
-/* ═══ ADMIN AUTH ═══ */
 function openAdmin(){
   document.getElementById('adminPanel').classList.add('open');
   updateDbStatus();
@@ -1563,7 +1627,6 @@ function changePw(){
   showToast(isRTL ? '✅ تم تغيير كلمة المرور' : '✅ Password aggiornata');
 }
 
-/* ═══ TABS ═══ */
 function switchTab(tabId, btn){
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1571,7 +1634,6 @@ function switchTab(tabId, btn){
   btn.classList.add('active');
 }
 
-/* ═══ PHOTO UPLOAD ═══ */
 function handlePhotoUpload(input, hiddenId, thumbsId){
   var files = Array.from(input.files);
   if(!files.length) return;
@@ -1615,7 +1677,6 @@ function removePhoto(hiddenId, thumbsId, idx){
   renderThumbs(arr, hiddenId, thumbsId);
 }
 
-/* ═══ SUPABASE HELPERS ═══ */
 async function dbSave(table, data){
   if(!window.SUPABASE_READY) return null;
   try {
@@ -1649,7 +1710,6 @@ async function dbLoad(table){
   } catch(e){ console.error('DB load error:', e); return null; }
 }
 
-/* ═══ INIT — load from Supabase if available ═══ */
 async function initData(){
   showLoading(true);
   if(window.SUPABASE_READY){
@@ -1667,7 +1727,6 @@ async function initData(){
   showLoading(false);
 }
 
-/* ═══ ADD POST ═══ */
 async function addPost(){
   var tAr = document.getElementById('nTitleAr').value.trim();
   var tIt = document.getElementById('nTitleIt').value.trim();
@@ -1705,7 +1764,6 @@ async function addPost(){
   showToast(isRTL ? '✅ تم نشر الخبر بنجاح!' : '✅ Notizia pubblicata!');
 }
 
-/* ═══ DELETE POST ═══ */
 function delPost(id){
   confirmDialog('', async function(){
     showLoading(true);
@@ -1718,7 +1776,6 @@ function delPost(id){
   });
 }
 
-/* ═══ OPEN EDIT POST ═══ */
 function openEditPost(id){
   var p = posts.find(x => String(x.id) === String(id)); if(!p) return;
   document.getElementById('editId').value    = id;
@@ -1736,7 +1793,6 @@ function openEditPost(id){
   applyLang();
 }
 
-/* ═══ ADD EVENT ═══ */
 async function addEvent(){
   var tAr = document.getElementById('eTitleAr').value.trim();
   var tIt = document.getElementById('eTitleIt').value.trim();
@@ -1778,7 +1834,6 @@ async function addEvent(){
   showToast(isRTL ? '✅ تمت إضافة الفعالية!' : '✅ Evento aggiunto!');
 }
 
-/* ═══ DELETE EVENT ═══ */
 function delEvent(id){
   confirmDialog('', async function(){
     showLoading(true);
@@ -1791,7 +1846,6 @@ function delEvent(id){
   });
 }
 
-/* ═══ OPEN EDIT EVENT ═══ */
 function openEditEvent(id){
   var ev = events.find(x => String(x.id) === String(id)); if(!ev) return;
   document.getElementById('editId').value    = id;
@@ -1810,7 +1864,6 @@ function openEditEvent(id){
   applyLang();
 }
 
-/* ═══ SAVE EDIT ═══ */
 async function saveEdit(){
   var id   = document.getElementById('editId').value;
   var type = document.getElementById('editType').value;
@@ -1852,13 +1905,11 @@ function closeEditModal(){
   document.getElementById('editModal').classList.remove('open');
 }
 
-/* ═══ ESCAPE HTML ═══ */
 function esc(s){
   if(!s) return '';
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-/* ═══ GALLERY HTML for card ═══ */
 function galleryHtml(photos, fallbackEmoji, uid){
   var arr = (photos && photos.length) ? photos : [];
   if(!arr.length) return '<div class="card-img">'+fallbackEmoji+'</div>';
@@ -1884,7 +1935,6 @@ function galNav(uid, arr, dir){
   if(num) num.textContent = galIdx[uid]+1;
 }
 
-/* ═══ ADMIN BUTTONS ═══ */
 function adminBtns(id, type){
   if(!isLoggedIn) return '';
   var editFn  = type==='post' ? 'openEditPost'  : 'openEditEvent';
@@ -1897,7 +1947,6 @@ function adminBtns(id, type){
     +'</div>';
 }
 
-/* ═══ RENDER POSTS ═══ */
 function renderPosts(){
   var l = document.getElementById('newsList');
   if(!posts.length){
@@ -1925,7 +1974,6 @@ function renderPosts(){
   applyLang();
 }
 
-/* ═══ RENDER EVENTS ═══ */
 function renderEvents(){
   var l = document.getElementById('eventsList');
   if(!events.length){
@@ -1953,9 +2001,7 @@ function renderEvents(){
   applyLang();
 }
 
-/* ═══════════════════════════════════
-   DETAIL MODAL
-═══════════════════════════════════ */
+
 var _detailSliderIdx = 0;
 var _detailPhotos = [];
 
@@ -2050,7 +2096,6 @@ function closeDetail(){
   document.body.style.overflow = '';
 }
 
-// keyboard support
 document.addEventListener('keydown', function(e){
   if(!document.getElementById('detailOverlay').classList.contains('open')) return;
   if(e.key === 'Escape') closeDetail();
@@ -2058,7 +2103,6 @@ document.addEventListener('keydown', function(e){
   if(e.key === 'ArrowRight') detailNav(isRTL ? -1 : 1);
 });
 
-/* ═══ BOOT ═══ */
 initData();
 </script>
 </body>
