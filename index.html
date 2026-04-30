@@ -421,6 +421,13 @@ body.ltr .about-text-side h2{font-family:'Playfair Display',serif;}
 /* card image gallery */
 .card-gallery{width:100%;height:195px;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--black-card),var(--green));}
 .card-gallery img{width:100%;height:100%;object-fit:cover;display:block;}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block;max-width:100%;}
+@media(max-width:600px){
+  .card-gallery{height:180px;}
+  .card-img{height:180px;}
+  .detail-slide{height:220px;}
+  .detail-slide img{object-fit:contain;width:100%;height:100%;}
+}
 .card-gallery-count{
   position:absolute;bottom:8px;right:8px;
   background:rgba(0,0,0,.65);color:white;
@@ -1252,7 +1259,9 @@ body.ltr .teaching-card h3{font-family:'Playfair Display',serif;}
     <p class="it" style="display:none">Siamo qui per rispondere alle tue domande — per iscriversi alle lezioni di arabo e Corano o per qualsiasi altra richiesta contattaci</p>
     <div class="contact-grid">
       <a class="contact-card" href="https://www.facebook.com/GiovaniXilBene" target="_blank">
-        <span class="cc-icon">📘</span>
+        <span class="cc-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+        </span>
         <span class="cc-label">Facebook</span>
         <span class="cc-val">GiovaniXilBene</span>
       </a>
@@ -1644,15 +1653,13 @@ function removePhoto(hiddenId, thumbsId, idx){
 async function dbSave(table, data){
   if(!window.SUPABASE_READY) return null;
   try {
-    // stringify photos array for jsonb
     var payload = Object.assign({}, data);
-    if(Array.isArray(payload.photos)) payload.photos = JSON.stringify(payload.photos);
+    // photos is jsonb — send as plain JS array, Supabase handles it
+    if(typeof payload.photos === 'string'){
+      try{ payload.photos = JSON.parse(payload.photos); }catch(e){ payload.photos = []; }
+    }
     const { data: result, error } = await _sb.from(table).insert([payload]).select().single();
     if(error) throw error;
-    // parse photos back
-    if(result && result.photos && typeof result.photos === 'string'){
-      try{ result.photos = JSON.parse(result.photos); }catch(e){}
-    }
     return result;
   } catch(e){ console.error('DB save error:', e); return null; }
 }
@@ -1660,7 +1667,10 @@ async function dbUpdate(table, id, data){
   if(!window.SUPABASE_READY) return null;
   try {
     var payload = Object.assign({}, data);
-    if(Array.isArray(payload.photos)) payload.photos = JSON.stringify(payload.photos);
+    // photos is jsonb — send as plain JS array, Supabase handles it
+    if(typeof payload.photos === 'string'){
+      try{ payload.photos = JSON.parse(payload.photos); }catch(e){ payload.photos = []; }
+    }
     const { error } = await _sb.from(table).update(payload).eq('id', id);
     if(error) throw error;
     return true;
@@ -1679,9 +1689,9 @@ async function dbLoad(table){
   try {
     const { data, error } = await _sb.from(table).select('*').order('created_at', {ascending:false});
     if(error) throw error;
-    // parse photos strings back to arrays
+    // normalize photos — jsonb comes back as array already, but handle edge cases
     if(data) data.forEach(function(row){
-      if(row.photos && typeof row.photos === 'string'){
+      if(typeof row.photos === 'string'){
         try{ row.photos = JSON.parse(row.photos); }catch(e){ row.photos = []; }
       }
       if(!Array.isArray(row.photos)) row.photos = row.img ? [row.img] : [];
@@ -1854,7 +1864,11 @@ async function saveEdit(){
   var xAr  = document.getElementById('editTextAr').value.trim();
   var xIt  = document.getElementById('editTextIt').value.trim();
   var photos = [];
-  try { photos = JSON.parse(document.getElementById('editPhotos').value || '[]'); } catch(e){}
+  try {
+    var raw = document.getElementById('editPhotos').value || '[]';
+    photos = JSON.parse(raw);
+    if(!Array.isArray(photos)) photos = [];
+  } catch(e){ photos = []; }
   if(!tAr && !tIt){ showToast(isRTL ? '⚠ العنوان مطلوب' : '⚠ Titolo obbligatorio', 'error'); return; }
 
   showLoading(true);
@@ -1865,15 +1879,13 @@ async function saveEdit(){
     if(window.SUPABASE_READY){
       var ok = await dbUpdate('posts', id, updates);
       if(ok){
-        // reload fresh from DB
         var fresh = await dbLoad('posts');
         if(fresh){ posts = fresh; localStorage.setItem('gxb_posts', JSON.stringify(posts)); }
       } else {
-        // fallback: update locally
         var idx = posts.findIndex(p => String(p.id) === String(id));
         if(idx >= 0) posts[idx] = Object.assign({}, posts[idx], updates);
         localStorage.setItem('gxb_posts', JSON.stringify(posts));
-        showToast(isRTL ? '⚠ خطأ في التحديث، تم الحفظ محلياً' : '⚠ Errore update, salvato localmente', 'error');
+        showToast(isRTL ? '⚠ خطأ في التحديث' : '⚠ Errore update', 'error');
       }
     } else {
       var idx = posts.findIndex(p => String(p.id) === String(id));
@@ -1895,7 +1907,7 @@ async function saveEdit(){
         var idx = events.findIndex(e => String(e.id) === String(id));
         if(idx >= 0) events[idx] = Object.assign({}, events[idx], updates);
         localStorage.setItem('gxb_events', JSON.stringify(events));
-        showToast(isRTL ? '⚠ خطأ في التحديث، تم الحفظ محلياً' : '⚠ Errore update, salvato localmente', 'error');
+        showToast(isRTL ? '⚠ خطأ في التحديث' : '⚠ Errore update', 'error');
       }
     } else {
       var idx = events.findIndex(e => String(e.id) === String(id));
